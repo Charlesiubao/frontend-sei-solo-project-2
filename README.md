@@ -1,0 +1,1 @@
+# sei-solo-project-2-frontend
