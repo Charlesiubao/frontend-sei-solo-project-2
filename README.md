@@ -70,7 +70,10 @@ This is what happens when the user logs out. There are nav-links to take the use
 
 | Verb | Path | Route Summary |
 | --- | --- | --- |
-| `GET` | `/news` | Retrieve news |
+| `GET` | `/news` | Retrieve news with default global setting |
+| `GET` | `/news/country/:userId` | Retrieve news with country preference |
+| `GET` | `/news/langauge/:userId` | STRETCH: Retrieve news with language preference |
+| `GET` | `/news/category/:userId` | STRETCH: Retrieve news with category preference |
 | `GET` | `/user/:userId/home` | Retrieve user's home page |
 | `GET` | `/user/:userId/articles` | Retrieve user's bookmarks |
 | `GET` | `/user/:userId/prefs` | Retrieve user's preferences |
