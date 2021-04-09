@@ -1,6 +1,7 @@
 # Zeigeist
 Frontend repository
 
+
 ## Tagline
 News of the age!
 
@@ -66,11 +67,12 @@ This is what happens when the user logs out. There are nav-links to take the use
 | Verb | Path | Route Summary |
 | --- | --- | --- |
 | `GET` | `/` | Retrieve news |
-| `GET` | `/user/home` | Retrieve user profile |
+| `GET` | `/user/:userId/home` | Retrieve user's profile |
+| `GET` | `/user/:userId/news` | Retrieve user's bookmarks |
 | `POST` | `/user` | Create new user |
-| `POST` | `/user/saved` | Save user's bookmarks
-| `PUT` | `/user/prefs` | Update user preferences
-| `DELETE` | `/user/saved` | Remove user's bookmarks
+| `POST` | `/user/:userId/news/:newsId` | Save user's bookmarks |
+| `PUT` | `/user/:userId/prefs` | Update user's preferences |
+| `DELETE` | `/user/:userId/news/:newsId` | Remove user's bookmarks |
 
 
 ## MVP Checklist
@@ -86,6 +88,8 @@ This is what happens when the user logs out. There are nav-links to take the use
 ## Stretch Goals
 1. Add additional preferences to modify user search experience
 2. Save search parameters as user search shortcuts
-3. Encrypt userId
-4. Implement db hashing
-5. CSS animations
+3. Encrypt/decrypt userId
+4. Verify userId
+5. Implement db hashing
+6. CSS animations
+7. Create news viewer in the app so no need to go to external websites to read the news
