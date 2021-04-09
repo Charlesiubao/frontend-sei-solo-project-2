@@ -66,7 +66,7 @@ This is what happens when the user logs out. There are nav-links to take the use
 
 | Verb | Path | Route Summary |
 | --- | --- | --- |
-| `GET` | `/` | Retrieve news |
+| `GET` | `/news` | Retrieve news |
 | `GET` | `/user/:userId/home` | Retrieve user's profile |
 | `GET` | `/user/:userId/news` | Retrieve user's bookmarks |
 | `POST` | `/user` | Create new user |
