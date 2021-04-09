@@ -81,13 +81,13 @@ This is what happens when the user logs out. There are nav-links to take the use
 2. Build backend with routes, controllers, and Postgres database
 3. Build user authentication
 4. Build news search feature
-5. Connect user with saved news articles in database
+5. Associate user with saved news articles in database
 6. Retrieve saved news articles
 7. Build 1 user preference modifier to adjust search parameters
 
 
 ## Stretch Goals
-1. Add additional preferences to modify user search experience
+1. Add additional preferences and associations to modify user search experience
 2. Save search parameters as user search shortcuts
 3. Encrypt/decrypt userId
 4. Verify userId
