@@ -63,7 +63,7 @@ This is what happens when the user logs out. There are nav-links to take the use
 
 
 ## Entity Relationship Diagram aka ERD
-<img src="https://github.com/graymok/frontend-sei-solo-project-2/blob/main/assets/zeitgeist-erd-updated.png?raw=true">
+<img src="https://github.com/graymok/frontend-sei-solo-project-2/blob/main/assets/zeitgeist-erd-v3.png?raw=true">
 
 ## Routes Inventory
 
