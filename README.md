@@ -13,13 +13,12 @@ TBD
 
 ## Project APIs
 * <a href="https://newsapi.org/">News API</a>
-* <a href="https://currentsapi.services/en">Currents</a>
 
 
 ## Overview
-Zeitgeist is a full stack web application that will give its users the ability to customize and bookmark the news articles that they're looking to read and learn. The application will leverage one of the two leading free APIs serving tens of thousands of news articles, News API and Currents.
+Zeitgeist is a full stack web application that will give its users the ability to customize and bookmark the news articles that they're looking to read and learn. The application will leverage the Developer API from News API and its existing endpoints, which include modifying the search results with country of origin, categories or topics, and language of origin.
 
-The level of search customization, to be defined at signup and to be adjusted at any point after login, will give Zeitgeist users a unique experience to consume the news from their preferred country of origin, topics of discussion, and even in their preferred written language.
+The level of search customization, to be defined at signup and to be adjusted at any point after login, will give Zeitgeist users a unique experience to consume the news from their preferred country of origin. Stretch customization goals include written languages and specific categories or topics.
 
 
 ## Wireframes
@@ -74,15 +73,16 @@ This is what happens when the user logs out. There are nav-links to take the use
 | `GET` | `/news/country/:userId` | Retrieve news with country preference |
 | `GET` | `/news/langauge/:userId` | STRETCH: Retrieve news with language preference |
 | `GET` | `/news/category/:userId` | STRETCH: Retrieve news with category preference |
+| `GET` | `/news/:prefId1/:prefId2/:prefId3` | STRETCH: Retrieve news with multiple preferences enabled |
 | `GET` | `/user/:userId/home` | Retrieve user's home page |
 | `GET` | `/user/:userId/articles` | Retrieve user's bookmarks |
 | `GET` | `/user/:userId/prefs` | Retrieve user's preferences |
 | `POST` | `/user` | Create new user |
-| `POST` | `/user/:userId/article/:articleId` | Save user's bookmarks |
+| `POST` | `/user/:userId/article/:articleId` | Save news article to user's bookmarks |
 | `PUT` | `/user/:userId/country/:countryId` | Update user's preference for country origin for news |
 | `PUT` | `/user/:userId/langauge/:languageId` | STRETCH: Update user's preference for language |
 | `PUT` | `/user/:userId/category/:categoryId` | STRETCH: Update user's preference for categories |
-| `DELETE` | `/user/:userId/article/:articleId` | Remove user's bookmarked article |
+| `DELETE` | `/user/:userId/article/:articleId` | Remove article from user's bookmarks |
 
 
 ## MVP Checklist
@@ -90,9 +90,10 @@ This is what happens when the user logs out. There are nav-links to take the use
 2. Build backend with routes, controllers, and Postgres database
 3. Build user authentication
 4. Build news search feature
-5. Associate user with saved news articles in database
+5. Save news article to user
 6. Retrieve saved news articles
-7. Build 1 user preference modifier to adjust search parameters
+7. Remove saved news article
+8. Build 1 user preference modifier, select country of origin, to adjust search parameters
 
 
 ## Stretch Goals
@@ -103,3 +104,4 @@ This is what happens when the user logs out. There are nav-links to take the use
 5. Implement db hashing
 6. CSS animations
 7. Create news viewer in the app so no need to go to external websites to read the news
+8. App branding
