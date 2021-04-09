@@ -63,17 +63,23 @@ This is what happens when the user logs out. There are nav-links to take the use
 8. When I click the news article, I go to the external website that hosts the news article
 
 
+## Entity Relationship Diagram aka ERD
+<img src="https://github.com/graymok/frontend-sei-solo-project-2/blob/main/assets/zeitgeist-erd.png?raw=true">
+
 ## Routes Inventory
 
 | Verb | Path | Route Summary |
 | --- | --- | --- |
 | `GET` | `/news` | Retrieve news |
-| `GET` | `/user/:userId/home` | Retrieve user's profile |
-| `GET` | `/user/:userId/news` | Retrieve user's bookmarks |
+| `GET` | `/user/:userId/home` | Retrieve user's home page |
+| `GET` | `/user/:userId/articles` | Retrieve user's bookmarks |
+| `GET` | `/user/:userId/prefs` | Retrieve user's preferences |
 | `POST` | `/user` | Create new user |
-| `POST` | `/user/:userId/news/:newsId` | Save user's bookmarks |
-| `PUT` | `/user/:userId/prefs` | Update user's preferences |
-| `DELETE` | `/user/:userId/news/:newsId` | Remove user's bookmarks |
+| `POST` | `/user/:userId/article/:articleId` | Save user's bookmarks |
+| `PUT` | `/user/:userId/country/:countryId` | Update user's preference for country origin for news |
+| `PUT` | `/user/:userId/langauge/:languageId` | STRETCH: Update user's preference for language |
+| `PUT` | `/user/:userId/category/:categoryId` | STRETCH: Update user's preference for categories |
+| `DELETE` | `/user/:userId/article/:articleId` | Remove user's bookmarked article |
 
 
 ## MVP Checklist
