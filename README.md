@@ -63,26 +63,26 @@ This is what happens when the user logs out. There are nav-links to take the use
 
 
 ## Entity Relationship Diagram aka ERD
-<img src="https://github.com/graymok/frontend-sei-solo-project-2/blob/main/assets/zeitgeist-erd.png?raw=true">
+<img src="https://github.com/graymok/frontend-sei-solo-project-2/blob/main/assets/zeitgeist-erd-updated.png?raw=true">
 
 ## Routes Inventory
 
 | Verb | Path | Route Summary |
 | --- | --- | --- |
 | `GET` | `/news` | Retrieve news with default global setting |
-| `GET` | `/news/country/:userId` | Retrieve news with country preference |
-| `GET` | `/news/langauge/:userId` | STRETCH: Retrieve news with language preference |
-| `GET` | `/news/category/:userId` | STRETCH: Retrieve news with category preference |
+| `GET` | `/news/country/` | Retrieve news with country preference |
+| `GET` | `/news/langauge/` | STRETCH: Retrieve news with language preference |
+| `GET` | `/news/category/` | STRETCH: Retrieve news with category preference |
 | `GET` | `/news/:prefId1/:prefId2/:prefId3` | STRETCH: Retrieve news with multiple preferences enabled |
-| `GET` | `/user/:userId/home` | Retrieve user's home page |
-| `GET` | `/user/:userId/articles` | Retrieve user's bookmarks |
-| `GET` | `/user/:userId/prefs` | Retrieve user's preferences |
-| `POST` | `/user` | Create new user |
-| `POST` | `/user/:userId/article/:articleId` | Save news article to user's bookmarks |
-| `PUT` | `/user/:userId/country/:countryId` | Update user's preference for country origin for news |
-| `PUT` | `/user/:userId/langauge/:languageId` | STRETCH: Update user's preference for language |
-| `PUT` | `/user/:userId/category/:categoryId` | STRETCH: Update user's preference for categories |
-| `DELETE` | `/user/:userId/article/:articleId` | Remove article from user's bookmarks |
+| `GET` | `/users/home` | Retrieve user's home page |
+| `GET` | `/users/articles` | Retrieve user's bookmarks |
+| `GET` | `/users/prefs` | Retrieve user's preferences |
+| `POST` | `/users` | Create new user |
+| `POST` | `/users/article/:articleId` | Save news article to user's bookmarks |
+| `PUT` | `/users/country/:countryId` | Update user's preference for country origin for news |
+| `PUT` | `/users/langauge/:languageId` | STRETCH: Update user's preference for language |
+| `PUT` | `/users/category/:categoryId` | STRETCH: Update user's preference for categories |
+| `DELETE` | `/users/article/:articleId` | Remove article from user's bookmarks |
 
 
 ## MVP Checklist
