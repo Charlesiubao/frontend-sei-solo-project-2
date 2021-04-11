@@ -5,10 +5,126 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css"href="./style.css">
-    <title>Document</title>
+    <title>Zeitgeist</title>
 </head>
 <body>
-    <h1>Testing</h1>
+    <nav id="nav-header">
+        <div id="header-logo">
+            <div class="nav-logo">Zeitgeist</div>
+        </div>
+        <div id="header-links">
+            <div class="nav-link hidden">About</div>
+            <div class="nav-link hidden">Sign in</div>
+            <div class="nav-link hidden">Get Started</div>
+            <div class="nav-link">Dashboard</div>
+            <div class="nav-link">Settings</div>
+            <div class="nav-link">Logout</div>
+        </div>
+    </nav>
+    <main>
+        <section class="hidden" id="section-start">
+
+        </section>
+        <section class="hidden" id="section-about">
+
+        </section>
+        <section class="hidden" id="section-signin">
+
+        </section>
+        <section id="section-signup">
+            <form id="form-signup">
+                <label for="signup-name">Name</label>
+                <input type="text" id="signup-name" onfocus="this.value=''">
+                <div id="country-list">
+                    <select name="part-1" size="9">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                    <select name="part-2" size="9">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                    <select name="part-3" size="9">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                    <select name="part-4" size="9">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                    <select name="part-5" size="9">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                    <select name="part-6" size="9">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                
+                <label for="signup-email">Email</label>
+                <input type="text" id="signup-email" onfocus="this.value=''">
+                
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" onfocus="this.value=''">
+        
+                <input type="submit" value="Sign Up!">
+            </form>
+        </section>
+        <section class="hidden" id="section-dashboard">
+
+        </section>
+        <section class="hidden" id="section-settings">
+
+        </section>
+        <section class="hidden" id="section-logout">
+
+        </section>
+    </main>
+    <nav id="nav-footer">
+        
+    </nav>
 
 
     <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js "></script>
