@@ -56,8 +56,27 @@ const clearDOM = (area) => {
     }  
 }
 
+// Nav-link Functions
+navAbout.addEventListener('click', () => {
+    showSection('.about')
+})
 
-// Sign-up & Sign-in Functions
+navSignIn.addEventListener('click', () => {
+    showSection('.signin')
+})
+
+navSignUp.addEventListener('click', () => {
+    showSection('.signup')
+})
+
+navLogout.addEventListener('click', () => {
+    navLoggedOut()
+    showSection('.logout')
+    localStorage.clear()
+})
+
+
+// Sign-up, Sign-in Form Functions
 formSignUp.addEventListener('submit', async (e) => {
     e.preventDefault()
 
@@ -67,16 +86,19 @@ formSignUp.addEventListener('submit', async (e) => {
     const country = countrySignUp.value
 
     try {
-        const response = await axios.post('http://localhost:3001/users', {
+        const response = await axios.post('http://localhost:3001/users/', {
             name: name,
             email: email,
             password: password,
             country: country
         })
-        
+
+
+
         const userId = response.data.user.id
         localStorage.setItem('userId', userId)
-        
+            navLoggedIn()
+            showSection('.dashboard')
             
     } catch (error) {
         alert('Email already taken')
@@ -90,12 +112,12 @@ formSignIn.addEventListener('submit', async (e) => {
     const password = emailSignIn.value
 
     try {
-        const response = await axios.post('http://localhost:3001/users/login', {
+        const response = await axios.post('http://localhost:3001/users/signin', {
             email: email,
             password: password
         })
 
-        const userId = response.data.user.id
+        const userId = response.userId
         localStorage.setItem('userId', userId)
         
             
@@ -103,3 +125,4 @@ formSignIn.addEventListener('submit', async (e) => {
         alert('Login failed')
     }
 })
+

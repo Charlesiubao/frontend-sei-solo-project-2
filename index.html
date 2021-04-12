@@ -13,11 +13,11 @@
             <div class="nav-logo" id="nav-about">Zeitgeist</div>
         </div>
         <div id="header-links">
-            <div class="nav-link hidden" id="nav-signin">Sign in</div>
-            <div class="nav-link hidden" id="nav-signup">Get Started</div>
-            <div class="nav-link" id="nav-dashboard">Dashboard</div>
-            <div class="nav-link" id="nav-settings">Settings</div>
-            <div class="nav-link" id="nav-logout">Logout</div>
+            <div class="nav-link" id="nav-signin">Sign in</div>
+            <div class="nav-link" id="nav-signup">Get Started</div>
+            <div class="nav-link hidden" id="nav-dashboard">Dashboard</div>
+            <div class="nav-link hidden" id="nav-settings">Settings</div>
+            <div class="nav-link hidden" id="nav-logout">Logout</div>
         </div>
     </nav>
     <main>
@@ -34,35 +34,35 @@
                 </div>
                 <div class="signin-box">
                     <label for="signin-email">Email:</label>
-                    <input type="text" id="signin-email" onfocus="this.value=''">
+                    <input type="text" id="signin-email">
                 </div>    
                 <div class="signin-box">
                     <label for="signin-password">Password:</label> 
-                    <input type="password" id="signin-password" onfocus="this.value=''">
+                    <input type="password" id="signin-password">
                 </div>
                 <div class="signin-box-submit">   
-                    <input type="submit" value="Log in">
+                    <input type="submit" value="Sign in!">
                 </div>  
             </form>
         </section>
         <section class="signup hidden">
             <form id="signup-form">
                 <div class="description-box">
-                    <h2>Welcome!</h2>
-                    <p>Please fill out your name, email, and password. Finally, select a country for your top headlines; global (all countries) is selected by default. 
-                    </p>
+                    <h2>Let's get you started!</h2>
+                    <p>Please type your name, email, and password.</p>
+                    <p>If desired, select a country for sourcing your top headlines; global (all countries) is on by default.</p>
                 </div>
                 <div class="signup-box">
                     <label for="signup-name">Name:</label>
-                    <input type="text" id="signup-name" onfocus="this.value=''">
+                    <input type="text" id="signup-name">
                 </div>    
                 <div class="signup-box">
                     <label for="signup-email">Email:</label>
-                    <input type="text" id="signup-email" onfocus="this.value=''">
+                    <input type="text" id="signup-email">
                 </div>    
                 <div class="signup-box">
                     <label for="signup-password">Password:</label> 
-                    <input type="password" id="signup-password" onfocus="this.value=''">
+                    <input type="password" id="signup-password">
                 </div>
                 <div class="signup-box">
                     <label for="signup-country">Top headlines from:</label>
@@ -125,12 +125,12 @@
                     </select>
                 </div>    
                 <div class="signup-box-submit">   
-                    <input type="submit" value="Click to get started!">
+                    <input type="submit" value="Sign up!">
                 </div>  
             </form>
         </section>
         <section class="dashboard hidden">
-
+            <h2>dashboard</h2>
         </section>
         <section class="settings hidden">
 
@@ -146,7 +146,7 @@
     </nav>
 
 
-    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js "></script>
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script async defer src="./main.js"></script>
 </body>
 </html>
