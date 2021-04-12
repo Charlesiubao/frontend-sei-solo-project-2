@@ -18,7 +18,7 @@ app.get('/main.js', async (req, res) => {
     await replaceInFile({
       files: filepath,
       from: 'http://localhost:3001',
-      to: 'https://backend-sei-solo-project-2.herokuapp.com/'
+      to: 'https://backend-sei-solo-project-2.herokuapp.com'
     })
   }
 
