@@ -3,6 +3,23 @@
 body {
     margin: 0;
     background-color: white;
+    font-family: 'PT Sans'
+}
+
+h2 {
+    font-family: 'Montserrat'
+}
+
+option, input, label {
+    font-family: 'PT Sans'
+}
+
+input, label, select {
+    margin: 0px 10px;
+}
+
+select {
+    width: 155px;
 }
 
 div {
@@ -62,7 +79,7 @@ main {
 }
 
 section {
-    border: 1px solid black;
+/*     border: 1px solid black; */
     width: 90%;
     height: 900px;
 }
@@ -71,5 +88,22 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+
 }
+
+.signup-box-description {
+    width: 28%;
+    text-align: center;
+}
+
+.signup-box {
+/*     border: 1px solid green; */
+    padding: 5px 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 28%;
+    height: 25px;
+    font-size: .9em;
+}
+

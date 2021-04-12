@@ -1,58 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css"href="./style.css">
-    <title>Zeitgeist</title>
-</head>
-<body>
-    <nav id="nav-header">
-        <div id="header-logo">
-            <div class="nav-logo">Zeitgeist</div>
-        </div>
-        <div id="header-links">
-            <div class="nav-link hidden">About</div>
-            <div class="nav-link hidden">Sign in</div>
-            <div class="nav-link hidden">Get Started</div>
-            <div class="nav-link">Dashboard</div>
-            <div class="nav-link">Settings</div>
-            <div class="nav-link">Logout</div>
-        </div>
-    </nav>
-    <main>
-        <section class="hidden" id="section-start">
-
-        </section>
-        <section class="hidden" id="section-about">
-
-        </section>
-        <section class="hidden" id="section-signin">
-
-        </section>
-        <section id="section-signup">
-            <form id="form-signup">
-                <div class="signup-box-description">
-                    <h2>Welcome!</h2>
-                    <p>Please fill out your name, email, and password. Finally, select a country for your top headlines; global (all countries) is selected by default. 
-                    </p>
-                </div>
-                <div class="signup-box">
-                    <label for="signup-name">Name:</label>
-                    <input type="text" id="signup-name" onfocus="this.value=''">
-                </div>    
-                <div class="signup-box">
-                    <label for="signup-email">Email:</label>
-                    <input type="text" id="signup-email" onfocus="this.value=''">
-                </div>    
-                <div class="signup-box">
-                    <label for="signup-password">Password:</label> 
-                    <input type="password" id="signup-password" onfocus="this.value=''">
-                </div>
-                <div class="signup-box">
-                    <label for="country-list">Top headlines from:</label>
-                    <select id="country-list" name="dropdown">
+                    <select name="part-1" size="11">
                         <option value="zz" selected>Global</option>
                         <option value="ar">Argentina</option>
                         <option value="au">Australia</option>
@@ -64,6 +10,8 @@
                         <option value="cn">China</option>
                         <option value="co">Columbia</option>
                         <option value="cu">Cuba</option>
+                    </select>
+                    <select name="part-2" size="11">
                         <option value="cz">Czech Republic</option>
                         <option value="eg">Egypt</option>
                         <option value="fr">France</option>
@@ -75,6 +23,8 @@
                         <option value="id">Indonesia</option>
                         <option value="ie">Ireland</option>
                         <option value="il">Israel</option>
+                    </select>
+                    <select name="part-3" size="11">
                         <option value="it">Italy</option>
                         <option value="jp">Japan</option>
                         <option value="lv">Latvia</option>
@@ -86,6 +36,8 @@
                         <option value="nz">New Zealand</option>
                         <option value="ng">Nigeria</option>
                         <option value="no">Norway</option>
+                    </select>
+                    <select name="part-4" size="11">
                         <option value="ph">Philippines</option>
                         <option value="pl">Poland</option>
                         <option value="pt">Portugal</option>
@@ -97,6 +49,8 @@
                         <option value="sk">Slovakia</option>
                         <option value="si">Slovenia</option>
                         <option value="za">South Africa</option>
+                    </select>
+                    <select name="part-5" size="11">
                         <option value="kr">South Korea</option>
                         <option value="se">Sweden</option>
                         <option value="ch">Switzerland</option>
@@ -109,28 +63,3 @@
                         <option value="us">United States</option>
                         <option value="ve">Venuzuela</option>
                     </select>
-                </div>    
-                <div class="signup-box-submit">   
-                    <input type="submit" value="Click to get started!">
-                </div>  
-            </form>
-        </section>
-        <section class="hidden" id="section-dashboard">
-
-        </section>
-        <section class="hidden" id="section-settings">
-
-        </section>
-        <section class="hidden" id="section-logout">
-
-        </section>
-    </main>
-    <nav id="nav-footer">
-        
-    </nav>
-
-
-    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js "></script>
-    <script async defer src="./main.js"></script>
-</body>
-</html>
