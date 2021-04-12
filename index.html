@@ -10,9 +10,10 @@
 <body>
     <nav id="nav-header">
         <div id="header-logo">
-            <div class="nav-logo" id="nav-about">Zeitgeist</div>
+            <div class="nav-logo" id="nav-welcome">Zeitgeist</div>
         </div>
         <div id="header-links">
+            <div class="nav-link" id="nav-about">About</div>
             <div class="nav-link" id="nav-signin">Sign in</div>
             <div class="nav-link" id="nav-signup">Get Started</div>
             <div class="nav-link hidden" id="nav-dashboard">Dashboard</div>
@@ -21,11 +22,11 @@
         </div>
     </nav>
     <main>
-        <section class="start hidden">
-
+        <section class="welcome hidden">
+            <h2>welcome</h2>
         </section>
         <section class="about hidden">
-
+            <h2>about</h2>
         </section>
         <section class="signin hidden">
             <form id="signin-form">
@@ -50,7 +51,7 @@
                 <div class="description-box">
                     <h2>Let's get you started!</h2>
                     <p>Please type your name, email, and password.</p>
-                    <p>If desired, select a country for sourcing your top headlines; global (all countries) is on by default.</p>
+                    <p>If desired, select a country for sourcing your top headlines; the United States is on by default.</p>
                 </div>
                 <div class="signup-box">
                     <label for="signup-name">Name:</label>
@@ -67,7 +68,7 @@
                 <div class="signup-box">
                     <label for="signup-country">Top headlines from:</label>
                     <select id="signup-country" name="dropdown">
-                        <option value="zz" selected>Global</option>
+                        <option value="us" selected>United States</option>
                         <option value="ar">Argentina</option>
                         <option value="au">Australia</option>
                         <option value="at">Austria</option>
@@ -120,7 +121,6 @@
                         <option value="ae">UAE</option>
                         <option value="ua">Ukraine</option>
                         <option value="gb">United Kingdom</option>
-                        <option value="us">United States</option>
                         <option value="ve">Venuzuela</option>
                     </select>
                 </div>    
@@ -130,10 +130,39 @@
             </form>
         </section>
         <section class="dashboard hidden">
-            <h2>dashboard</h2>
+            <div class="dash-top">
+                <h2>Good to see you, <span id="dash-username"></span></h2>
+            </div>
+            <div class="dash-mid">
+                <div class="dash-side" id="headlines-header">
+                    <h4>Top Headlines: <span id="dash-country"></span></h4>
+                    <button id="test-headlines">Test Headlines</button>
+                </div>
+                <div class="dash-search" id="search-header">
+                    <form id="search-form">
+                        <label for="search-bar">Find news articles: </label>
+                        <input type="text" id="search-bar">
+                        <input type="submit" id="search-button" value="Search">
+                    </form>
+                </div>
+                <div class="dash-side" id="bookmarks-header">
+                    <h4>Bookmarks</h4>
+                </div>
+            </div>
+            <div class="dash-bot">
+                <div class="dash-side" id="headlines-area">
+                    
+                </div>
+                <div class="dash-search" id="search-area">
+
+                </div>
+                <div class="dash-side" id="bookmarks-area">
+
+                </div>
+            </div>
         </section>
         <section class="settings hidden">
-
+            <h2>settings</h2>
         </section>
         <section class="logout hidden">
             <div class="description-box">
