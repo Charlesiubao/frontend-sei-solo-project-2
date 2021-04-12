@@ -84,19 +84,20 @@ section {
     height: 900px;
 }
 
-#form-signup {
+#form-signup, #form-signin {
     display: flex;
     flex-direction: column;
     align-items: center;
 
 }
 
-.signup-box-description {
+.description-box {
     width: 28%;
     text-align: center;
 }
 
-.signup-box {
+
+.signup-box, .signin-box {
 /*     border: 1px solid green; */
     padding: 5px 5px;
     display: flex;

@@ -10,30 +10,44 @@
 <body>
     <nav id="nav-header">
         <div id="header-logo">
-            <div class="nav-logo">Zeitgeist</div>
+            <div class="nav-logo" id="nav-about">Zeitgeist</div>
         </div>
         <div id="header-links">
-            <div class="nav-link hidden">About</div>
-            <div class="nav-link hidden">Sign in</div>
-            <div class="nav-link hidden">Get Started</div>
-            <div class="nav-link">Dashboard</div>
-            <div class="nav-link">Settings</div>
-            <div class="nav-link">Logout</div>
+            <div class="nav-link hidden" id="nav-signin">Sign in</div>
+            <div class="nav-link hidden" id="nav-signup">Get Started</div>
+            <div class="nav-link" id="nav-dashboard">Dashboard</div>
+            <div class="nav-link" id="nav-settings">Settings</div>
+            <div class="nav-link" id="nav-logout">Logout</div>
         </div>
     </nav>
     <main>
-        <section class="hidden" id="section-start">
+        <section class="start hidden">
 
         </section>
-        <section class="hidden" id="section-about">
+        <section class="about hidden">
 
         </section>
-        <section class="hidden" id="section-signin">
-
+        <section class="signin hidden">
+            <form id="signin-form">
+                <div class="description-box">
+                    <h2>Welcome back!</h2>
+                </div>
+                <div class="signin-box">
+                    <label for="signin-email">Email:</label>
+                    <input type="text" id="signin-email" onfocus="this.value=''">
+                </div>    
+                <div class="signin-box">
+                    <label for="signin-password">Password:</label> 
+                    <input type="password" id="signin-password" onfocus="this.value=''">
+                </div>
+                <div class="signin-box-submit">   
+                    <input type="submit" value="Log in">
+                </div>  
+            </form>
         </section>
-        <section id="section-signup">
-            <form id="form-signup">
-                <div class="signup-box-description">
+        <section class="signup hidden">
+            <form id="signup-form">
+                <div class="description-box">
                     <h2>Welcome!</h2>
                     <p>Please fill out your name, email, and password. Finally, select a country for your top headlines; global (all countries) is selected by default. 
                     </p>
@@ -51,8 +65,8 @@
                     <input type="password" id="signup-password" onfocus="this.value=''">
                 </div>
                 <div class="signup-box">
-                    <label for="country-list">Top headlines from:</label>
-                    <select id="country-list" name="dropdown">
+                    <label for="signup-country">Top headlines from:</label>
+                    <select id="signup-country" name="dropdown">
                         <option value="zz" selected>Global</option>
                         <option value="ar">Argentina</option>
                         <option value="au">Australia</option>
@@ -115,14 +129,16 @@
                 </div>  
             </form>
         </section>
-        <section class="hidden" id="section-dashboard">
+        <section class="dashboard hidden">
 
         </section>
-        <section class="hidden" id="section-settings">
+        <section class="settings hidden">
 
         </section>
-        <section class="hidden" id="section-logout">
-
+        <section class="logout hidden">
+            <div class="description-box">
+                <h2>You have been logged out.</h2>
+            </div>
         </section>
     </main>
     <nav id="nav-footer">
