@@ -40,9 +40,11 @@ const dashSearchArea = document.querySelector('#search-area')
 const dashBookmarksArea = document.querySelector('#bookmarks-area')
 
 const testButton = document.getElementById('test-headlines')
+const testBookmarks = document.getElementById('test-bookmarks')
 
 let headlines = []
 let searches = []
+let bookmarks = []
 
 // Reusable Functions
 const navLoggedIn = () => {
@@ -227,7 +229,7 @@ const showHeadlines = (response) => {
         let headlineSave = document.createElement('button')
         headlineSave.classList.add('headline-save')
         headlineSave.innerText = 'Bookmark'
-        headlineComponent.appendChild(headlineSave)
+        
         headlineSave.addEventListener('click', async () => {
             const userId = localStorage.getItem('userId')
             try {
@@ -242,6 +244,7 @@ const showHeadlines = (response) => {
                 alert('Save button failed')
             }
         })
+        headlineComponent.appendChild(headlineSave)
     }
     console.log(headlines)
 
@@ -306,7 +309,7 @@ const showSearchResults = (response) => {
         let searchSave = document.createElement('button')
         searchSave.classList.add('search-save')
         searchSave.innerText = 'Bookmark'
-        searchComponent.appendChild(searchSave)
+        
         searchSave.addEventListener('click', async () => {
             const userId = localStorage.getItem('userId')
             try {
@@ -321,15 +324,63 @@ const showSearchResults = (response) => {
                 alert('Save button failed')
             }
         })
+        searchComponent.appendChild(searchSave)
     }
     console.log(searches)
 }
 
 // Bookmarks
-const showBookmarks = async () => {
+const showBookmarks = async (response) => {
     clearDOM(dashBookmarksArea)
-    
+    bookmarks = response.data.response
+
+    for ( let i = 0; i < bookmarks.length; i++ ) {
+        let bookmarkComponent = document.createElement('a')
+        bookmarkComponent.classList.add('bookmark-component')
+        //bookmarkComponent.href = `${bookmarks[i].url}`
+        //bookmarkComponent.target = '_blank'
+        dashBookmarksArea.appendChild(bookmarkComponent)
+
+        let bookmarkTitle = document.createElement('div')
+        bookmarkTitle.classList.add('bookmark-title')
+        bookmarkTitle.innerText = `${bookmarks[i].title}`
+        bookmarkComponent.appendChild(bookmarkTitle)
+
+        let bookmarkImage = document.createElement('img')
+        if ( bookmarks[i].image !== null ) {
+            bookmarkImage.src = `${bookmarks[i].image}`
+        } else {
+            bookmarkImage.src = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+        }
+        bookmarkImage.classList.add('bookmark-image')
+        bookmarkComponent.appendChild(bookmarkImage)
+
+        let bookmarkDelete = document.createElement('button')
+        bookmarkDelete.classList.add('bookmark-save')
+        bookmarkDelete.innerText = 'Remove'
+        
+        bookmarkDelete.addEventListener('click', async () => {
+            const userId = localStorage.getItem('userId')
+            try {
+                const response = await axios.post(`${backEnd}/news/bookmarks/remove`, {
+                    id: userId,
+                    title: bookmarks[i].title,
+                    url: bookmarks[i].url,
+                    image: bookmarks[i].image
+                })
+                console.log('delete', response)
+            } catch (error) {
+                alert('Delete button failed')
+            }
+        })
+        bookmarkComponent.appendChild(bookmarkDelete)
+    }
+    console.log(bookmarks)
 }
+
+
+
+
 
 
 
@@ -337,16 +388,33 @@ const saveBookmark = async () => {
     try {
         const userId = localStorage.getItem('userId')
 
-        const response = await axios.post(`${backEnd}/bookmarks`, {
+        const response = await axios.post(`${backEnd}/news/bookmarks`, {
             headers: {
                 authorization: userId
             }
         })
         console.log(response)
+        
     } catch (error) {
         alert('Save bookmark failed')
     }
 }
+
+testBookmarks.addEventListener('click', async () => {
+    try {
+        const userId = localStorage.getItem('userId')
+        
+        const response = await axios.get(`${backEnd}/users/bookmarks`, {
+            headers: {
+                authorization: userId
+            }
+        })
+        showBookmarks(response)
+
+    } catch (error) {
+        alert('Getting top headlines failed')
+    }
+})
 
 
 

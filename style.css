@@ -10,7 +10,7 @@ h2, h4 {
     font-family: 'Montserrat'
 }
 
-option, input, label {
+option, input, label, button {
     font-family: 'PT Sans'
 }
 
@@ -26,9 +26,6 @@ div {
     margin: 5px 5px;
 }
 
-.hidden {
-    display: none;
-}
 
 #nav-header {
     background-color: rgb(33, 30, 84);
@@ -85,7 +82,7 @@ section {
     height: 900px;
 }
 
-#signup-form, #signin-form {
+#signup-form, #signin-form, #settings-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,7 +96,7 @@ section {
 }
 
 
-.signup-box, .signin-box {
+.signup-box, .signin-box, .settings-box {
 /*     border: 1px solid green; */
     padding: 5px 5px;
     display: flex;
@@ -116,7 +113,7 @@ section {
     justify-content: space-between;
     align-items: center;
     height: 60px;
-/*     border: 1px solid pink; */
+    border: 1px solid pink;
     padding: 0px 20px;
 }
 
@@ -133,8 +130,8 @@ section {
 }
 
 .dash-mid {
-    height: 60px;
-/*     border: 1px solid lightgreen; */
+    height: 100px;
+    border: 1px solid lightgreen;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -143,7 +140,7 @@ section {
 
 .dash-bot {
     height: 700px;
-/*     border: 1px solid lightblue; */
+    border: 1px solid lightblue;
 }
 
 .dash-side {
@@ -234,4 +231,41 @@ section {
 .search-save{
     position: absolute;
     top: 80%;
+}
+
+#bookmarks-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bookmark-component {
+    border: 1px solid red;
+    height: 200px;
+    width: 200px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.bookmark-title {
+    position: absolute;
+    color: white;
+    font-size: 1.0em;
+    background-color: rgba(30, 30, 30, 0.5);
+}
+
+.bookmark-image {
+    height: 189px;
+    width: 199px;
+    object-fit: cover;
+}
+
+
+.hidden {
+    display: none;
 }
