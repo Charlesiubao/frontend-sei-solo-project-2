@@ -92,14 +92,19 @@ navAbout.addEventListener('click', () => {
 })
 
 navSignIn.addEventListener('click', () => {
+    formSignIn.reset()
     showSection('.signin')
 })
 
 navSignUp.addEventListener('click', () => {
+    formSignUp.reset()
     showSection('.signup')
 })
 
 navDashboard.addEventListener('click', () => {
+    dashSearchBar.value =''
+    clearDOM(dashHeadlinesArea)
+    clearDOM(dashSearchArea)
     showSection('.dashboard')
 })
 
@@ -111,6 +116,7 @@ navLogout.addEventListener('click', () => {
     navLoggedOut()
     showSection('.logout')
     clearDOM(dashHeadlinesArea)
+    clearDOM(dashSearchArea)
     localStorage.clear()
 })
 
@@ -200,8 +206,8 @@ const showHeadlines = (response) => {
     for ( let i = 0; i < headlines.length; i++ ) {
         let headlineComponent = document.createElement('a')
         headlineComponent.classList.add('headline-component')
-        headlineComponent.href = `${headlines[i].url}`
-        headlineComponent.target = '_blank'
+        //headlineComponent.href = `${headlines[i].url}`
+        //headlineComponent.target = '_blank'
         dashHeadlinesArea.appendChild(headlineComponent)
 
         let headlineTitle = document.createElement('div')
@@ -222,7 +228,22 @@ const showHeadlines = (response) => {
         headlineSave.classList.add('headline-save')
         headlineSave.innerText = 'Bookmark'
         headlineComponent.appendChild(headlineSave)
+        headlineSave.addEventListener('click', async () => {
+            const userId = localStorage.getItem('userId')
+            try {
+                const response = await axios.post(`${backEnd}/news/bookmarks`, {
+                    id: userId,
+                    title: headlines[i].title,
+                    url: headlines[i].url,
+                    image: headlines[i].urlToImage
+                })
+                console.log('save', response)
+            } catch (error) {
+                alert('Save button failed')
+            }
+        })
     }
+    console.log(headlines)
 
 }
 
@@ -264,8 +285,8 @@ const showSearchResults = (response) => {
     for ( let i = 0; i < searches.length; i++ ) {
         let searchComponent = document.createElement('a')
         searchComponent.classList.add('search-component')
-        searchComponent.href = `${searches[i].url}`
-        searchComponent.target = '_blank'
+        //searchComponent.href = `${searches[i].url}`
+        //searchComponent.target = '_blank'
         dashSearchArea.appendChild(searchComponent)
 
         let searchTitle = document.createElement('div')
@@ -286,10 +307,46 @@ const showSearchResults = (response) => {
         searchSave.classList.add('search-save')
         searchSave.innerText = 'Bookmark'
         searchComponent.appendChild(searchSave)
+        searchSave.addEventListener('click', async () => {
+            const userId = localStorage.getItem('userId')
+            try {
+                const response = await axios.post(`${backEnd}/news/bookmarks`, {
+                    id: userId,
+                    title: searches[i].title,
+                    url: searches[i].url,
+                    image: searches[i].urlToImage
+                })
+                console.log('save', response)
+            } catch (error) {
+                alert('Save button failed')
+            }
+        })
     }
+    console.log(searches)
+}
+
+// Bookmarks
+const showBookmarks = async () => {
+    clearDOM(dashBookmarksArea)
+    
 }
 
 
+
+const saveBookmark = async () => {
+    try {
+        const userId = localStorage.getItem('userId')
+
+        const response = await axios.post(`${backEnd}/bookmarks`, {
+            headers: {
+                authorization: userId
+            }
+        })
+        console.log(response)
+    } catch (error) {
+        alert('Save bookmark failed')
+    }
+}
 
 
 
@@ -315,6 +372,7 @@ const pageOnLoad = async () => {
 
         } else {
             navLoggedOut()
+            showSection('.welcome')
         }
 
 
