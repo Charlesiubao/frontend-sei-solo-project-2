@@ -121,7 +121,7 @@ section {
 }
 
 #dash-username, #dash-country {
-/*     color: rgb(74, 173, 227); */
+    color: rgb(74, 173, 227);
     text-transform: uppercase;
 }
 
@@ -201,6 +201,37 @@ section {
 }
 
 .headline-save{
+    position: absolute;
+    top: 80%;
+}
+
+.search-component {
+    border: 1px solid red;
+    height: 200px;
+    width: 500px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.search-title {
+    position: absolute;
+    color: white;
+    font-size: 1.0em;
+    background-color: rgba(30, 30, 30, 0.5);
+}
+
+.search-image {
+    height: 189px;
+    width: 199px;
+    object-fit: cover;
+}
+
+.search-save{
     position: absolute;
     top: 80%;
 }

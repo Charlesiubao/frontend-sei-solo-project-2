@@ -1,5 +1,7 @@
 console.log('Reporting from main.js')
 
+const backEnd = 'http://localhost:3001'
+
 // DOM Selectors
 const navWelcome = document.querySelector('#nav-welcome')
 const navAbout = document.querySelector('#nav-about')
@@ -40,6 +42,7 @@ const dashBookmarksArea = document.querySelector('#bookmarks-area')
 const testButton = document.getElementById('test-headlines')
 
 let headlines = []
+let searches = []
 
 // Reusable Functions
 const navLoggedIn = () => {
@@ -122,7 +125,7 @@ formSignUp.addEventListener('submit', async (e) => {
     const country = countrySignUp.value
 
     try {
-        const response = await axios.post('http://localhost:3001/users/signup', {
+        const response = await axios.post(`${backEnd}/users/signup`, {
             name: name,
             email: email,
             password: password,
@@ -150,7 +153,7 @@ formSignIn.addEventListener('submit', async (e) => {
     const password = passwordSignIn.value
 
     try {
-        const response = await axios.post('http://localhost:3001/users/signin', {
+        const response = await axios.post(`${backEnd}/users/signin`, {
             email: email,
             password: password
         })
@@ -173,12 +176,12 @@ formSignIn.addEventListener('submit', async (e) => {
 
 
 
-// Dashboard functionality (top headlines, search bar & results, user bookmarks)
+// Top Headlines
 const topHeadlines = async () => {
     try {
         const userId = localStorage.getItem('userId')
         
-        const response = await axios.get('http://localhost:3001/news/headlines/', {
+        const response = await axios.get(`${backEnd}/news/headlines`, {
             headers: {
                 authorization: userId
             }
@@ -223,12 +226,11 @@ const showHeadlines = (response) => {
 
 }
 
-
 testButton.addEventListener('click', async () => {
     try {
         const userId = localStorage.getItem('userId')
         
-        const response = await axios.get('http://localhost:3001/news/headlines/', {
+        const response = await axios.get(`${backEnd}/news/headlines`, {
             headers: {
                 authorization: userId
             }
@@ -240,6 +242,57 @@ testButton.addEventListener('click', async () => {
     }
 })
 
+// News Search
+dashSearchButton.addEventListener('click', async (e) => {
+    e.preventDefault()
+    
+    try {
+        const response = await axios.post(`${backEnd}/news`, {
+            search: dashSearchBar.value
+        })
+        console.log(response)
+        showSearchResults(response)
+    } catch (error) {
+        alert('Search failed')
+    }
+})
+
+const showSearchResults = (response) => {
+    clearDOM(dashSearchArea)
+    searches = response.data.articles
+
+    for ( let i = 0; i < searches.length; i++ ) {
+        let searchComponent = document.createElement('a')
+        searchComponent.classList.add('search-component')
+        searchComponent.href = `${searches[i].url}`
+        searchComponent.target = '_blank'
+        dashSearchArea.appendChild(searchComponent)
+
+        let searchTitle = document.createElement('div')
+        searchTitle.classList.add('search-title')
+        searchTitle.innerText = `${searches[i].title}`
+        searchComponent.appendChild(searchTitle)
+
+        let searchImage = document.createElement('img')
+        if ( searches[i].urlToImage !== null ) {
+            searchImage.src = `${searches[i].urlToImage}`
+        } else {
+            searchImage.src = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+        }
+        searchImage.classList.add('search-image')
+        searchComponent.appendChild(searchImage)
+
+        let searchSave = document.createElement('button')
+        searchSave.classList.add('search-save')
+        searchSave.innerText = 'Bookmark'
+        searchComponent.appendChild(searchSave)
+    }
+}
+
+
+
+
+
 
 // On load
 const pageOnLoad = async () => {
@@ -247,7 +300,7 @@ const pageOnLoad = async () => {
         const userId = localStorage.getItem('userId')
 
         if (userId) {
-            const response = await axios.get('http://localhost:3001/users', {
+            const response = await axios.get(`${backEnd}/users`, {
                 headers: {
                     authorization: userId
                 }
