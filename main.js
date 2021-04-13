@@ -141,82 +141,6 @@ const removeActiveNav = (nav) => {
     }
 }
 
-/* const showResults = (result, array, area, container, title, image, button, buttonText) => {
-    clearDOM(area)
-    array = result.data.articles
-    console.log(array)
-    console.log(area)
-
-    for ( let i = 0; i < array.length; i++ ) {
-        let container = document.createElement('div')
-        container.classList.add('news-component')
-        area.appendChild(container)
-
-        let title = document.createElement('div')
-        title.classList.add('news-title')
-        title.innerText = `${array[i].title}`
-        container.appendChild(title)
-
-        let image = document.createElement('img')
-        if ( array[i].urlToImage !== null ) {
-            image.src = `${array[i].urlToImage}` 
-        } else {
-            image.src = nullAltImage
-        }
-        image.classList.add('news-image')
-        container.appendChild(image)
-
-        if ( buttonText === 'Bookmark') {
-            let button = document.createElement('button')
-            button.classList.add('news-save')
-            button.innerText = 'Bookmark'
-            button.addEventListener('click', async () => {
-                const userId = localStorage.getItem('userId')
-                try {
-                    const res = await axios.post(`${backEnd}/news/bookmarks`, {
-                        id: userId,
-                        title: array[i].title,
-                        url: array[i].url,
-                        image: array[i].urlToImage
-                    })
-                    console.log('save', res)
-                } catch (error) {
-                    alert('Save Button Failed')
-                }
-            })
-        } else {
-            let button = document.createElement('button')
-            button.classList.add('news-remove')
-            button.innerText = 'Remove'
-            button.addEventListener('click', async () => {
-                const userId = localStorage.getItem('userId')
-                try {
-                    const res = await axios.post(`${backEnd}/news/bookmarks/remove`, {
-                        id: userId,
-                        title: result.data.response[i].title,
-                        url: result.data.response[i].url,
-                        image: result.data.response[i].image
-                    })
-                    console.log('delete', res)
-                } catch (error) {
-                    alert('Remove Button Failed')
-                }
-            })
-        }
-        container.appendChild(button)
-    }
-} */
-
-
-
-
-
-
-
-
-
-
-
 // Sign-up, Sign-in Form Functions
 formSignUp.addEventListener('submit', async (e) => {
     e.preventDefault()
@@ -239,9 +163,33 @@ formSignUp.addEventListener('submit', async (e) => {
         const countryName = response.data.country.name
         localStorage.setItem('userId', userId)
             navLoggedIn()
+            dashSearchBar.value =''
             showSection('.dashboard')
             showDashUserName(userName)
             showDashCountry(countryName)
+            addActiveNav(navDashboard)
+            clearDOM(dashHeadlinesArea)
+            clearDOM(dashSearchArea)
+            clearDOM(dashBookmarksArea)
+            /* removeHidden(dashHeadlinesArea)
+            addActive(navHeadlines)
+            addHidden(dashSearchArea)
+            removeActive(navSearch)
+            addHidden(dashBookmarksArea)
+            removeActive(navBookmarks)
+            makeInvisible(dashSearchForm)
+            topHeadlines() */
+
+            addHidden(dashHeadlinesArea)
+            removeActive(navHeadlines)
+
+            removeHidden(dashSearchArea)
+            addActive(navSearch)
+
+            addHidden(dashBookmarksArea)
+            removeActive(navBookmarks)
+
+            makeVisible(dashSearchForm)
             
     } catch (error) {
         alert('Email already taken')
@@ -265,9 +213,36 @@ formSignIn.addEventListener('submit', async (e) => {
         const countryName = response.data.country.name
         localStorage.setItem('userId', userId)
             navLoggedIn()
+            dashSearchBar.value =''
             showSection('.dashboard')
             showDashUserName(userName)
             showDashCountry(countryName)
+            addActiveNav(navDashboard)
+            clearDOM(dashHeadlinesArea)
+            clearDOM(dashSearchArea)
+            clearDOM(dashBookmarksArea)
+
+            /* removeHidden(dashHeadlinesArea)
+            addActive(navHeadlines)
+            addHidden(dashSearchArea)
+            removeActive(navSearch)
+            addHidden(dashBookmarksArea)
+            removeActive(navBookmarks)
+            makeInvisible(dashSearchForm)
+            topHeadlines() */
+
+            addHidden(dashHeadlinesArea)
+            removeActive(navHeadlines)
+
+            removeHidden(dashSearchArea)
+            addActive(navSearch)
+
+            addHidden(dashBookmarksArea)
+            removeActive(navBookmarks)
+
+            makeVisible(dashSearchForm)
+
+            
         
             
     } catch (error) {
@@ -521,20 +496,34 @@ const myBookmarks = async () => {
 // Nav-link Functions
 navWelcome.addEventListener('click', () => {
     showSection('.welcome')
+    removeActiveNav(navDashboard)
+    removeActiveNav(navSettings)
+    removeActiveNav(navAbout)
+    removeActiveNav(navSignIn)
+    removeActiveNav(navSignUp)
 })
 
 navAbout.addEventListener('click', () => {
     showSection('.about')
+    addActiveNav(navAbout)
+    removeActiveNav(navSignIn)
+    removeActiveNav(navSignUp)
 })
 
 navSignIn.addEventListener('click', () => {
     formSignIn.reset()
     showSection('.signin')
+    addActiveNav(navSignIn)
+    removeActiveNav(navAbout)
+    removeActiveNav(navSignUp)
 })
 
 navSignUp.addEventListener('click', () => {
     formSignUp.reset()
     showSection('.signup')
+    addActiveNav(navSignUp)
+    removeActiveNav(navAbout)
+    removeActiveNav(navSignIn)
 })
 
 navDashboard.addEventListener('click', () => {
@@ -547,13 +536,24 @@ navDashboard.addEventListener('click', () => {
     clearDOM(dashHeadlinesArea)
     clearDOM(dashSearchArea)
     clearDOM(dashBookmarksArea)
-    removeHidden(dashHeadlinesArea)
+    /* removeHidden(dashHeadlinesArea)
     addActive(navHeadlines)
     addHidden(dashSearchArea)
     removeActive(navSearch)
     addHidden(dashBookmarksArea)
     removeActive(navBookmarks)
-    topHeadlines()    
+    topHeadlines() */
+    
+    addHidden(dashHeadlinesArea)
+    removeActive(navHeadlines)
+
+    removeHidden(dashSearchArea)
+    addActive(navSearch)
+
+    addHidden(dashBookmarksArea)
+    removeActive(navBookmarks)
+
+    makeVisible(dashSearchForm)    
 })
 
 navSettings.addEventListener('click', () => {
@@ -568,6 +568,11 @@ navLogout.addEventListener('click', () => {
     clearDOM(dashHeadlinesArea)
     clearDOM(dashSearchArea)
     clearDOM(dashBookmarksArea)
+    removeActiveNav(navAbout)
+    removeActiveNav(navSignIn)
+    removeActiveNav(navSignUp)
+    removeActiveNav(navDashboard)
+    removeActiveNav(navSettings)
     localStorage.clear()
 })
 
@@ -653,14 +658,25 @@ const pageOnLoad = async () => {
                 clearDOM(dashHeadlinesArea)
                 clearDOM(dashSearchArea)
                 clearDOM(dashBookmarksArea)
-                removeHidden(dashHeadlinesArea)
+                /* removeHidden(dashHeadlinesArea)
                 addActive(navHeadlines)
                 addHidden(dashSearchArea)
                 removeActive(navSearch)
                 addHidden(dashBookmarksArea)
                 removeActive(navBookmarks)
                 makeInvisible(dashSearchForm)
-                topHeadlines()
+                topHeadlines() */
+
+                addHidden(dashHeadlinesArea)
+                removeActive(navHeadlines)
+
+                removeHidden(dashSearchArea)
+                addActive(navSearch)
+
+                addHidden(dashBookmarksArea)
+                removeActive(navBookmarks)
+
+                makeVisible(dashSearchForm)
 
         } else {
             navLoggedOut()
