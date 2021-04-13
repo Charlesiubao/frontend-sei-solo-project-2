@@ -130,40 +130,43 @@
             </form>
         </section>
         <section class="dashboard hidden">
-            <div class="dash-top">
+            <div class="dash-header">
                 <h2>Good to see you, <span id="dash-username"></span></h2>
             </div>
-            <div class="dash-mid">
-                <div class="dash-side" id="headlines-header">
+            <div class="dash-navbar">
+                <div class="dash-navlink" id="nav-headlines">
                     <h4>Top Headlines: <span id="dash-country"></span></h4>
-                    <button id="test-headlines">Test Headlines</button>
                 </div>
-                <div class="dash-search" id="search-header">
-                    <form id="search-form">
-                        <label for="search-bar">Find news articles: </label>
-                        <input type="text" id="search-bar">
-                        <input type="submit" id="search-button" value="Search">
-                    </form>
+                <div class="dash-navlink" id="nav-bookmarks">
+                    <h4>My Bookmarks</h4>
                 </div>
-                <div class="dash-side" id="bookmarks-header">
-                    <h4>Bookmarks</h4>
-                    <button id="test-bookmarks">Test Bookmarks</button>
+                <div class="dash-navlink" id="nav-search">
+                    <h4>Search for News</h4>
                 </div>
             </div>
-            <div class="dash-bot">
-                <div class="dash-side" id="headlines-area">
+            <div class="dash-viewer">
+                <div class="dash-articles" id="area-headlines">
                     
                 </div>
-                <div class="dash-search" id="search-area">
-
+                <div class="dash-articles" id="area-bookmarks">
+                    
                 </div>
-                <div class="dash-side" id="bookmarks-area">
+                <div class="dash-articles" id="dash-search">
+                    <div class="search-window">  
+                        <form id="search-form">
+                            <label for="search-bar">Find news articles: </label>
+                            <input type="text" id="search-bar">
+                            <input type="submit" id="search-button" value="Search">
+                        </form>
+                    </div>      
+                    <div id="area-search">
 
+                    </div>
                 </div>
             </div>
         </section>
         <section class="settings hidden">
-            <h2>settings</h2>
+            
         </section>
         <section class="logout hidden">
             <div class="description-box">

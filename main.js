@@ -1,6 +1,7 @@
 console.log('Reporting from main.js')
 
 const backEnd = 'http://localhost:3001'
+const nullImage = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
 
 // DOM Selectors
 const navWelcome = document.querySelector('#nav-welcome')
@@ -10,6 +11,10 @@ const navSignUp = document.querySelector('#nav-signup')
 const navDashboard = document.querySelector('#nav-dashboard')
 const navSettings = document.querySelector('#nav-settings')
 const navLogout = document.querySelector('#nav-logout')
+
+const navHeadlines = document.querySelector('#nav-headlines')
+const navSearch = document.querySelector('#nav-search')
+const navBookmarks = document.querySelector('#nav-bookmarks')
 
 const sectionAbout = document.querySelector('.about')
 const sectionStart = document.querySelector('.start')
@@ -32,12 +37,13 @@ const countrySignUp = document.querySelector('#signup-country')
 const dashUserName = document.querySelector('#dash-username')
 const dashCountry = document.querySelector('#dash-country')
 
-const dashSearchBar = document.querySelector('#search-bar')
-const dashSearchButton = document.querySelector('#search-button')
+const dashSearchBar = document.getElementById('search-bar')
+const dashSearchButton = document.getElementById('search-button')
+const dashSearchForm = document.querySelector('#search-form')
 
-const dashHeadlinesArea = document.querySelector('#headlines-area')
-const dashSearchArea = document.querySelector('#search-area')
-const dashBookmarksArea = document.querySelector('#bookmarks-area')
+const dashHeadlinesArea = document.getElementById('area-headlines')
+const dashSearchArea = document.getElementById('area-search')
+const dashBookmarksArea = document.getElementById('area-bookmarks')
 
 const testButton = document.getElementById('test-headlines')
 const testBookmarks = document.getElementById('test-bookmarks')
@@ -84,43 +90,131 @@ const showDashCountry = (country) => {
     dashCountry.innerText = country
 }
 
-// Nav-link Functions
-navWelcome.addEventListener('click', () => {
-    showSection('.welcome')
-})
+const addHidden = (area) => {
+    if ( area.classList.contains('hidden') !== true ) {
+        area.classList.add('hidden')
+    }
+}
 
-navAbout.addEventListener('click', () => {
-    showSection('.about')
-})
+const removeHidden = (area) => {
+    if ( area.classList.contains('hidden') === true ) {
+        area.classList.remove('hidden')
+    }
+}
 
-navSignIn.addEventListener('click', () => {
-    formSignIn.reset()
-    showSection('.signin')
-})
+const makeVisible = (area) => {
+    if ( area.classList.contains('v-hidden') === true ) {
+        area.classList.remove('v-hidden')
+        area.classList.add('v-visible')
+    }
+}
 
-navSignUp.addEventListener('click', () => {
-    formSignUp.reset()
-    showSection('.signup')
-})
+const makeInvisible = (area) => {
+    if ( area.classList.contains('v-hidden') !== true ) {
+        area.classList.remove('v-visible')
+        area.classList.add('v-hidden')
+    }
+}
 
-navDashboard.addEventListener('click', () => {
-    dashSearchBar.value =''
-    clearDOM(dashHeadlinesArea)
-    clearDOM(dashSearchArea)
-    showSection('.dashboard')
-})
 
-navSettings.addEventListener('click', () => {
-    showSection('.settings')
-})
+const addActive = (subNav) => {
+    if ( subNav.classList.contains('active') !== true ) {
+        subNav.classList.add('active')
+    }
+}
 
-navLogout.addEventListener('click', () => {
-    navLoggedOut()
-    showSection('.logout')
-    clearDOM(dashHeadlinesArea)
-    clearDOM(dashSearchArea)
-    localStorage.clear()
-})
+const removeActive = (subNav) => {
+    if ( subNav.classList.contains('active') === true ) {
+        subNav.classList.remove('active')
+    }
+}
+
+const addActiveNav = (nav) => {
+    if ( nav.classList.contains('active-nav') !== true ) {
+        nav.classList.add('active-nav')
+    }
+}
+
+const removeActiveNav = (nav) => {
+    if ( nav.classList.contains('active-nav') === true ) {
+        nav.classList.remove('active-nav')
+    }
+}
+
+/* const showResults = (result, array, area, container, title, image, button, buttonText) => {
+    clearDOM(area)
+    array = result.data.articles
+    console.log(array)
+    console.log(area)
+
+    for ( let i = 0; i < array.length; i++ ) {
+        let container = document.createElement('div')
+        container.classList.add('news-component')
+        area.appendChild(container)
+
+        let title = document.createElement('div')
+        title.classList.add('news-title')
+        title.innerText = `${array[i].title}`
+        container.appendChild(title)
+
+        let image = document.createElement('img')
+        if ( array[i].urlToImage !== null ) {
+            image.src = `${array[i].urlToImage}` 
+        } else {
+            image.src = nullAltImage
+        }
+        image.classList.add('news-image')
+        container.appendChild(image)
+
+        if ( buttonText === 'Bookmark') {
+            let button = document.createElement('button')
+            button.classList.add('news-save')
+            button.innerText = 'Bookmark'
+            button.addEventListener('click', async () => {
+                const userId = localStorage.getItem('userId')
+                try {
+                    const res = await axios.post(`${backEnd}/news/bookmarks`, {
+                        id: userId,
+                        title: array[i].title,
+                        url: array[i].url,
+                        image: array[i].urlToImage
+                    })
+                    console.log('save', res)
+                } catch (error) {
+                    alert('Save Button Failed')
+                }
+            })
+        } else {
+            let button = document.createElement('button')
+            button.classList.add('news-remove')
+            button.innerText = 'Remove'
+            button.addEventListener('click', async () => {
+                const userId = localStorage.getItem('userId')
+                try {
+                    const res = await axios.post(`${backEnd}/news/bookmarks/remove`, {
+                        id: userId,
+                        title: result.data.response[i].title,
+                        url: result.data.response[i].url,
+                        image: result.data.response[i].image
+                    })
+                    console.log('delete', res)
+                } catch (error) {
+                    alert('Remove Button Failed')
+                }
+            })
+        }
+        container.appendChild(button)
+    }
+} */
+
+
+
+
+
+
+
+
+
 
 
 // Sign-up, Sign-in Form Functions
@@ -185,6 +279,67 @@ formSignIn.addEventListener('submit', async (e) => {
 
 
 // Top Headlines
+
+
+const showHeadlines = (response) => {
+    clearDOM(dashHeadlinesArea)
+    headlines = response.data.articles
+
+    for ( let i = 0; i < headlines.length; i++ ) {
+        let headlineComponent = document.createElement('div')
+        headlineComponent.classList.add('article-component')
+        dashHeadlinesArea.appendChild(headlineComponent)
+
+        let headlineTitle = document.createElement('a')
+        headlineTitle.classList.add('article-title')
+        headlineTitle.innerText = `${headlines[i].title}`
+        headlineTitle.href = `${headlines[i].url}`
+        headlineTitle.target = '_blank'
+        headlineComponent.appendChild(headlineTitle)
+
+        let headlineOverlay = document.createElement('a')
+        headlineOverlay.classList.add('article-overlay')
+        headlineOverlay.href = `${headlines[i].url}`
+        headlineOverlay.target = '_blank'
+        headlineComponent.appendChild(headlineOverlay)
+
+        let headlineImage = document.createElement('img')
+        if ( headlines[i].urlToImage !== null ) {
+            headlineImage.src = `${headlines[i].urlToImage}`
+        } else {
+            headlineImage.src = nullImage
+        }
+        headlineImage.classList.add('article-image')
+        headlineComponent.appendChild(headlineImage)
+
+        let headlineSave = document.createElement('div')
+        headlineSave.classList.add('article-bookmark')
+        headlineSave.innerText = 'Bookmark'
+        
+        headlineSave.addEventListener('click', async () => {
+            const userId = localStorage.getItem('userId')
+            try {
+                headlineSave.classList.add('active-bookmark')
+                headlineSave.innerText = 'Bookmarked'
+                const response = await axios.post(`${backEnd}/news/bookmarks`, {
+                    id: userId,
+                    title: headlines[i].title,
+                    url: headlines[i].url,
+                    image: headlines[i].urlToImage
+                })
+                
+                console.log('save', response)
+            } catch (error) {
+                alert('Save button failed')
+            }
+            
+        })
+        headlineComponent.appendChild(headlineSave)
+    }
+    console.log(headlines)
+
+}
+
 const topHeadlines = async () => {
     try {
         const userId = localStorage.getItem('userId')
@@ -194,63 +349,14 @@ const topHeadlines = async () => {
                 authorization: userId
             }
         })
-        console.log(response.data)
+        showHeadlines(response)
         
     } catch (error) {
         alert('Getting top headlines failed')
     }
 }
 
-const showHeadlines = (response) => {
-    clearDOM(dashHeadlinesArea)
-    headlines = response.data.articles
-
-    for ( let i = 0; i < headlines.length; i++ ) {
-        let headlineComponent = document.createElement('a')
-        headlineComponent.classList.add('headline-component')
-        //headlineComponent.href = `${headlines[i].url}`
-        //headlineComponent.target = '_blank'
-        dashHeadlinesArea.appendChild(headlineComponent)
-
-        let headlineTitle = document.createElement('div')
-        headlineTitle.classList.add('headline-title')
-        headlineTitle.innerText = `${headlines[i].title}`
-        headlineComponent.appendChild(headlineTitle)
-
-        let headlineImage = document.createElement('img')
-        if ( headlines[i].urlToImage !== null ) {
-            headlineImage.src = `${headlines[i].urlToImage}`
-        } else {
-            headlineImage.src = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-        }
-        headlineImage.classList.add('headline-image')
-        headlineComponent.appendChild(headlineImage)
-
-        let headlineSave = document.createElement('button')
-        headlineSave.classList.add('headline-save')
-        headlineSave.innerText = 'Bookmark'
-        
-        headlineSave.addEventListener('click', async () => {
-            const userId = localStorage.getItem('userId')
-            try {
-                const response = await axios.post(`${backEnd}/news/bookmarks`, {
-                    id: userId,
-                    title: headlines[i].title,
-                    url: headlines[i].url,
-                    image: headlines[i].urlToImage
-                })
-                console.log('save', response)
-            } catch (error) {
-                alert('Save button failed')
-            }
-        })
-        headlineComponent.appendChild(headlineSave)
-    }
-    console.log(headlines)
-
-}
-
-testButton.addEventListener('click', async () => {
+/* testButton.addEventListener('click', async () => {
     try {
         const userId = localStorage.getItem('userId')
         
@@ -261,10 +367,11 @@ testButton.addEventListener('click', async () => {
         })
         console.log(response)
         showHeadlines(response)
+
     } catch (error) {
         alert('Getting top headlines failed')
     }
-})
+}) */
 
 // News Search
 dashSearchButton.addEventListener('click', async (e) => {
@@ -286,33 +393,41 @@ const showSearchResults = (response) => {
     searches = response.data.articles
 
     for ( let i = 0; i < searches.length; i++ ) {
-        let searchComponent = document.createElement('a')
-        searchComponent.classList.add('search-component')
-        //searchComponent.href = `${searches[i].url}`
-        //searchComponent.target = '_blank'
+        let searchComponent = document.createElement('div')
+        searchComponent.classList.add('article-component')
         dashSearchArea.appendChild(searchComponent)
 
-        let searchTitle = document.createElement('div')
-        searchTitle.classList.add('search-title')
+        let searchTitle = document.createElement('a')
+        searchTitle.classList.add('article-title')
         searchTitle.innerText = `${searches[i].title}`
+        searchTitle.href = `${searches[i].url}`
+        searchTitle.target = '_blank'
         searchComponent.appendChild(searchTitle)
+
+        let searchOverlay = document.createElement('a')
+        searchOverlay.classList.add('article-overlay')
+        searchOverlay.href = `${searches[i].url}`
+        searchOverlay.target = '_blank'
+        searchComponent.appendChild(searchOverlay)
 
         let searchImage = document.createElement('img')
         if ( searches[i].urlToImage !== null ) {
             searchImage.src = `${searches[i].urlToImage}`
         } else {
-            searchImage.src = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+            searchImage.src = nullImage
         }
-        searchImage.classList.add('search-image')
+        searchImage.classList.add('article-image')
         searchComponent.appendChild(searchImage)
 
-        let searchSave = document.createElement('button')
-        searchSave.classList.add('search-save')
+        let searchSave = document.createElement('div')
+        searchSave.classList.add('article-bookmark')
         searchSave.innerText = 'Bookmark'
         
         searchSave.addEventListener('click', async () => {
             const userId = localStorage.getItem('userId')
             try {
+                searchSave.classList.add('active-bookmark')
+                searchSave.innerText = 'Bookmarked'
                 const response = await axios.post(`${backEnd}/news/bookmarks`, {
                     id: userId,
                     title: searches[i].title,
@@ -335,33 +450,41 @@ const showBookmarks = async (response) => {
     bookmarks = response.data.response
 
     for ( let i = 0; i < bookmarks.length; i++ ) {
-        let bookmarkComponent = document.createElement('a')
-        bookmarkComponent.classList.add('bookmark-component')
-        //bookmarkComponent.href = `${bookmarks[i].url}`
-        //bookmarkComponent.target = '_blank'
+        let bookmarkComponent = document.createElement('div')
+        bookmarkComponent.classList.add('article-component')
         dashBookmarksArea.appendChild(bookmarkComponent)
 
-        let bookmarkTitle = document.createElement('div')
-        bookmarkTitle.classList.add('bookmark-title')
+        let bookmarkTitle = document.createElement('a')
+        bookmarkTitle.classList.add('article-title')
         bookmarkTitle.innerText = `${bookmarks[i].title}`
+        bookmarkTitle.href = `${bookmarks[i].url}`
+        bookmarkTitle.target = '_blank'
         bookmarkComponent.appendChild(bookmarkTitle)
+
+        let bookmarkOverlay = document.createElement('a')
+        bookmarkOverlay.classList.add('article-overlay')
+        bookmarkOverlay.href = `${bookmarks[i].url}`
+        bookmarkOverlay.target = '_blank'
+        bookmarkComponent.appendChild(bookmarkOverlay)
 
         let bookmarkImage = document.createElement('img')
         if ( bookmarks[i].image !== null ) {
             bookmarkImage.src = `${bookmarks[i].image}`
         } else {
-            bookmarkImage.src = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+            bookmarkImage.src = nullImage
         }
-        bookmarkImage.classList.add('bookmark-image')
+        bookmarkImage.classList.add('article-image')
         bookmarkComponent.appendChild(bookmarkImage)
 
-        let bookmarkDelete = document.createElement('button')
-        bookmarkDelete.classList.add('bookmark-save')
+        let bookmarkDelete = document.createElement('div')
+        bookmarkDelete.classList.add('article-bookmark')
         bookmarkDelete.innerText = 'Remove'
         
         bookmarkDelete.addEventListener('click', async () => {
             const userId = localStorage.getItem('userId')
             try {
+                bookmarkDelete.classList.add('active-bookmark')
+                bookmarkDelete.innerText = 'Removed'
                 const response = await axios.post(`${backEnd}/news/bookmarks/remove`, {
                     id: userId,
                     title: bookmarks[i].title,
@@ -378,29 +501,7 @@ const showBookmarks = async (response) => {
     console.log(bookmarks)
 }
 
-
-
-
-
-
-
-const saveBookmark = async () => {
-    try {
-        const userId = localStorage.getItem('userId')
-
-        const response = await axios.post(`${backEnd}/news/bookmarks`, {
-            headers: {
-                authorization: userId
-            }
-        })
-        console.log(response)
-        
-    } catch (error) {
-        alert('Save bookmark failed')
-    }
-}
-
-testBookmarks.addEventListener('click', async () => {
+const myBookmarks = async () => {
     try {
         const userId = localStorage.getItem('userId')
         
@@ -412,8 +513,119 @@ testBookmarks.addEventListener('click', async () => {
         showBookmarks(response)
 
     } catch (error) {
-        alert('Getting top headlines failed')
+        alert('Getting my bookmarks failed')
     }
+}
+
+
+// Nav-link Functions
+navWelcome.addEventListener('click', () => {
+    showSection('.welcome')
+})
+
+navAbout.addEventListener('click', () => {
+    showSection('.about')
+})
+
+navSignIn.addEventListener('click', () => {
+    formSignIn.reset()
+    showSection('.signin')
+})
+
+navSignUp.addEventListener('click', () => {
+    formSignUp.reset()
+    showSection('.signup')
+})
+
+navDashboard.addEventListener('click', () => {
+    dashSearchBar.value =''
+    addActiveNav(navDashboard)
+    removeActiveNav(navSettings)
+
+    makeInvisible(dashSearchForm)
+    showSection('.dashboard')
+    clearDOM(dashHeadlinesArea)
+    clearDOM(dashSearchArea)
+    clearDOM(dashBookmarksArea)
+    removeHidden(dashHeadlinesArea)
+    addActive(navHeadlines)
+    addHidden(dashSearchArea)
+    removeActive(navSearch)
+    addHidden(dashBookmarksArea)
+    removeActive(navBookmarks)
+    topHeadlines()    
+})
+
+navSettings.addEventListener('click', () => {
+    removeActiveNav(navDashboard)
+    addActiveNav(navSettings)
+    showSection('.settings')
+})
+
+navLogout.addEventListener('click', () => {
+    navLoggedOut()
+    showSection('.logout')
+    clearDOM(dashHeadlinesArea)
+    clearDOM(dashSearchArea)
+    clearDOM(dashBookmarksArea)
+    localStorage.clear()
+})
+
+navHeadlines.addEventListener('click', () => {
+    clearDOM(dashHeadlinesArea)
+    clearDOM(dashSearchArea)
+    clearDOM(dashBookmarksArea)
+    
+    removeHidden(dashHeadlinesArea)
+    addActive(navHeadlines)
+
+    addHidden(dashSearchArea)
+    removeActive(navSearch)
+
+    addHidden(dashBookmarksArea)
+    removeActive(navBookmarks)
+
+    makeInvisible(dashSearchForm)
+
+    topHeadlines()
+})
+
+navSearch.addEventListener('click', () => {
+    clearDOM(dashHeadlinesArea)
+    clearDOM(dashSearchArea)
+    clearDOM(dashBookmarksArea)
+
+    addHidden(dashHeadlinesArea)
+    removeActive(navHeadlines)
+
+    removeHidden(dashSearchArea)
+    addActive(navSearch)
+
+    addHidden(dashBookmarksArea)
+    removeActive(navBookmarks)
+
+    makeVisible(dashSearchForm)
+    
+    navBookmarks.classList.remove('active')
+})
+
+navBookmarks.addEventListener('click', () => {
+    clearDOM(dashHeadlinesArea)
+    clearDOM(dashSearchArea)
+    clearDOM(dashBookmarksArea)
+
+    addHidden(dashHeadlinesArea)
+    removeActive(navHeadlines)
+
+    addHidden(dashSearchArea)
+    removeActive(navSearch)
+
+    removeHidden(dashBookmarksArea)
+    addActive(navBookmarks)
+
+    makeInvisible(dashSearchForm)
+
+    myBookmarks()
 })
 
 
@@ -433,10 +645,22 @@ const pageOnLoad = async () => {
             const userName = response.data.user.name
             const countryName = response.data.country.name
                 navLoggedIn()
+                dashSearchBar.value =''
                 showSection('.dashboard')
                 showDashUserName(userName)
                 showDashCountry(countryName)
-                
+                addActiveNav(navDashboard)
+                clearDOM(dashHeadlinesArea)
+                clearDOM(dashSearchArea)
+                clearDOM(dashBookmarksArea)
+                removeHidden(dashHeadlinesArea)
+                addActive(navHeadlines)
+                addHidden(dashSearchArea)
+                removeActive(navSearch)
+                addHidden(dashBookmarksArea)
+                removeActive(navBookmarks)
+                makeInvisible(dashSearchForm)
+                topHeadlines()
 
         } else {
             navLoggedOut()

@@ -3,15 +3,15 @@
 body {
     margin: 0;
     background-color: white;
-    font-family: 'PT Sans'
+    font-family: 'PT Sans';
 }
 
 h2, h4 {
-    font-family: 'Montserrat'
+    font-family: 'Montserrat';
 }
 
 option, input, label, button {
-    font-family: 'PT Sans'
+    font-family: 'PT Sans';
 }
 
 input, label, select {
@@ -21,11 +21,6 @@ input, label, select {
 select {
     width: 155px;
 }
-
-div {
-    margin: 5px 5px;
-}
-
 
 #nav-header {
     background-color: rgb(33, 30, 84);
@@ -59,13 +54,17 @@ div {
     cursor: pointer;
 }
 
+.nav-logo:hover {
+    color: rgb(74, 173, 227);
+}
+
 .nav-link {
     margin: 0px 12px;
 }
 
 .nav-link:hover {
     cursor: pointer;
-    text-decoration: underline;
+    color: rgb(74, 173, 227);
 }
 
 main {
@@ -95,7 +94,6 @@ section {
     text-align: center;
 }
 
-
 .signup-box, .signin-box, .settings-box {
 /*     border: 1px solid green; */
     padding: 5px 5px;
@@ -107,165 +105,206 @@ section {
     font-size: .9em;
 }
 
-.dash-top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-    border: 1px solid pink;
-    padding: 0px 20px;
-}
 
 #dash-username, #dash-country {
     color: rgb(74, 173, 227);
     text-transform: uppercase;
 }
 
-.dash-mid, .dash-bot {
+.dashboard {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-}
-
-.dash-mid {
-    height: 100px;
-    border: 1px solid lightgreen;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 }
 
-.dash-bot {
-    height: 700px;
-    border: 1px solid lightblue;
+.dash-header {
+    max-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.dash-side {
-    width: 25%;
-/*     border: 1px dotted green; */
-    text-align: center;
-}
-
-.dash-search {
-    width: 50%;
-/*     border: 1px dotted blue; */
+.dash-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
     
+}
+
+.dash-navlink {
+    width: 30%;
+    margin: 0px 0.5px;
+    text-align: center;
+    font-size: 1.0em;
+    box-shadow: inset 0px 0px 5px rgb(230, 230, 230);
+    border-radius: 2px;
+}
+
+.dash-navlink:hover {
+    background-color:rgb(242, 242, 242);
+    box-shadow: inset 0px 0px 5px rgb(210, 210, 210);
+    border-bottom: 3px solid rgb(15, 15, 15);
+    cursor: pointer;
+}
+
+.dash-navlink:active {
+    background-color:rgb(242, 242, 242);
+    box-shadow: inset 0px 0px 5px rgb(210, 210, 210);
+    border-bottom: 3px solid rgb(15, 15, 15);
+}
+
+.dash-viewer {
+    width: 90%;
+    margin: 0px 0px;
+    padding: 0px 0.5px;
+    box-shadow: inset 0px 0px 5px rgb(230, 230, 230);
+    border-radius: 2px;
+}
+
+#area-headlines, #area-search, #area-bookmarks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 1150px;
+/*     padding: 50px 50px; */
+}
+
+#dash-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #search-form {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100px;
 }
 
 #search-bar {
-    width: 50%;
-}
-
-#headlines-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.headline-component {
-    border: 1px solid red;
-    height: 200px;
     width: 200px;
+}
+
+
+
+.article-component {
+    width: 450px;
+    height: 220px;
     position: relative;
+    margin: 10px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin: 5px 0;
-    cursor: pointer;
+    border-radius: 10px;
 }
 
-.headline-title {
+.article-component:hover {
+    transform: scale(1.02, 1.02);
+}
+
+.article-overlay {
+    position: absolute;
+    width: 450px;
+    height: 220px;
+    background-color: rgba(20, 20, 20, 0.7);
+    z-index: 1;
+    border-radius: 10px;
+    margin: 10px 10px;
+}
+
+
+
+.article-title {
     position: absolute;
     color: white;
-    font-size: 1.0em;
-    background-color: rgba(30, 30, 30, 0.5);
+    font-size: 1.2em;
+    top: 30%;
+    text-align: center;
+    width: 80%;
+    z-index: 2;
 }
 
-.headline-image {
-    height: 189px;
-    width: 199px;
+.article-title:hover {
+    color:rgb(74, 173, 227);
+}
+
+.article-image {
+    width: 450px;
+    height: 220px;
     object-fit: cover;
+    border-radius: 10px;
+    margin: 10px 10px;
 }
 
-.headline-save{
+.article-button {
     position: absolute;
     top: 80%;
-}
-
-.search-component {
-    border: 1px solid red;
-    height: 200px;
-    width: 500px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 5px 0;
+    z-index: 3;
+    font-size: 1.0em;
+    width: 20%;
     cursor: pointer;
 }
 
-.search-title {
+.article-bookmark {
     position: absolute;
     color: white;
-    font-size: 1.0em;
-    background-color: rgba(30, 30, 30, 0.5);
-}
-
-.search-image {
-    height: 189px;
-    width: 199px;
-    object-fit: cover;
-}
-
-.search-save{
-    position: absolute;
     top: 80%;
-}
-
-#bookmarks-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.bookmark-component {
-    border: 1px solid red;
-    height: 200px;
-    width: 200px;
-    position: relative;
+    z-index: 3;
+    cursor: pointer;
+    border: 1px solid white;
+    width: 100px;
+    height: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 5px 0;
-    cursor: pointer;
+    border-radius: 10px;
 }
 
-.bookmark-title {
-    position: absolute;
-    color: white;
-    font-size: 1.0em;
-    background-color: rgba(30, 30, 30, 0.5);
+.article-bookmark:hover {
+    color:rgb(74, 173, 227);
+    border: 1px solid rgb(74, 173, 227);
 }
 
-.bookmark-image {
-    height: 189px;
-    width: 199px;
-    object-fit: cover;
+
+
+
+
+
+
+.active {
+    background-color:rgb(242, 242, 242);
+    box-shadow: inset 0px 0px 5px rgb(210, 210, 210);
+    border-bottom: 3px solid rgb(15, 15, 15);
 }
 
+.active-nav {
+    color: rgb(74, 173, 227);
+}
+
+.active-link {
+    color:rgb(74, 173, 227);
+}
+
+.active-bookmark {
+    color:rgb(74, 173, 227);
+    border: 1px solid rgb(74, 173, 227);
+}
 
 .hidden {
     display: none;
+}
+
+.v-hidden {
+    visibility: hidden;
+}
+
+.v-visible {
+    visibility: visible;
 }
