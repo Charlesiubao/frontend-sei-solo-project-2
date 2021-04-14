@@ -1,14 +1,12 @@
 # Zeitgeist
+
+## Repository Links
 * <a href="https://github.com/graymok/frontend-sei-solo-project-2">Frontend repository</a>
 * <a href="https://github.com/graymok/backend-sei-solo-project-2">Backend repository</a>
 
 
-## Tagline
-News of the age!
-
-
-## Project Tracker
-TBD
+## Heroku Deployment
+* <a href="https://zeitgeist-news-app.herokuapp.com/">Zeitgeist News App</a>
 
 
 ## Project APIs
@@ -69,39 +67,35 @@ This is what happens when the user logs out. There are nav-links to take the use
 
 | Verb | Path | Route Summary |
 | --- | --- | --- |
-| `GET` | `/news` | Retrieve news with default global setting |
-| `GET` | `/news/country/` | Retrieve news with country preference |
-| `GET` | `/news/langauge/` | STRETCH: Retrieve news with language preference |
-| `GET` | `/news/category/` | STRETCH: Retrieve news with category preference |
-| `GET` | `/news/:prefId1/:prefId2/:prefId3` | STRETCH: Retrieve news with multiple preferences enabled |
-| `GET` | `/users/home` | Retrieve user's home page |
-| `GET` | `/users/articles` | Retrieve user's bookmarks |
-| `GET` | `/users/prefs` | Retrieve user's preferences |
-| `POST` | `/users` | Create new user |
-| `POST` | `/users/article/:articleId` | Save news article to user's bookmarks |
-| `PUT` | `/users/country/:countryId` | Update user's preference for country origin for news |
-| `PUT` | `/users/langauge/:languageId` | STRETCH: Update user's preference for language |
-| `PUT` | `/users/category/:categoryId` | STRETCH: Update user's preference for categories |
-| `DELETE` | `/users/article/:articleId` | Remove article from user's bookmarks |
+| `GET` | `/users` | Find user |
+| `GET` | `/users/bookmarks` | Find user's bookmarks |
+| `POST` | `/users/signup` | Create new user |
+| `POST` | `/users/signin` | Sign in existing user |
+| `POST` | `/news` | Find news articles based on search query |
+| `GET` | `/news/headlines` | Retrieve Top Headlines based on user's country preference |
+| `POST` | `/news/bookmarks` | Save news article to user's bookmarks |
+| `POST` | `/news/bookmarks/remove` | Remove news article from user's bookmarks |
 
 
 ## MVP Checklist
-1. Build frontend with minimal HTML & CSS
-2. Build backend with routes, controllers, and Postgres database
-3. Build user authentication
-4. Build news search feature
-5. Save news article to user
-6. Retrieve saved news articles
-7. Remove saved news article
-8. Build 1 user preference modifier, select country of origin, to adjust search parameters
+1. [x] Build frontend with minimal HTML & CSS
+2. [x] Build backend with routes, controllers, and Postgres database
+3. [x] Build user authentication
+4. [x] Build news search feature
+5. [x] Save news article to user
+6. [x] Retrieve saved news articles
+7. [x] Remove saved news article
+8. [x] Build 1 user preference modifier, select country of origin, to adjust search parameters
 
 
 ## Stretch Goals
-1. Add additional preferences and associations to modify user search experience
-2. Save search parameters as user search shortcuts
-3. Encrypt/decrypt userId
-4. Verify userId
-5. Implement db hashing
-6. CSS animations
-7. Create news viewer in the app so no need to go to external websites to read the news
-8. App branding
+1. [x] App branding
+2. [x] Home page, About page
+3. [x] Deep CSS styling
+4. [x] User encryption
+5. [x] Hashed user passwords in database
+6. [ ] Verify user endpoint
+7. [ ] Add additional preferences and associations to modify user search experience
+8. [ ] Save search parameters as user search shortcuts
+9. [ ] CSS animations
+10. [ ] Create news viewer in the app so no need to go to external websites to read the news
