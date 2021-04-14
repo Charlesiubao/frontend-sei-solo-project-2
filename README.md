@@ -94,8 +94,9 @@ This is what happens when the user logs out. There are nav-links to take the use
 3. [x] Deep CSS styling
 4. [x] User encryption
 5. [x] Hashed user passwords in database
-6. [ ] Verify user endpoint
-7. [ ] Add additional preferences and associations to modify user search experience
-8. [ ] Save search parameters as user search shortcuts
-9. [ ] CSS animations
-10. [ ] Create news viewer in the app so no need to go to external websites to read the news
+6. [ ] Responsive Design
+7. [ ] Verify user endpoint
+8. [ ] Add additional preferences and associations to modify user search experience
+9. [ ] Save search parameters as user search shortcuts
+10. [ ] CSS animations
+11. [ ] Create news viewer in the app so no need to go to external websites to read the news
