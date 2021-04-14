@@ -151,7 +151,7 @@ formSignUp.addEventListener('submit', async (e) => {
             country: country
         })
 
-        const userId = response.data.user.id
+        const userId = response.data.userId
         const userName = response.data.user.name
         const countryName = response.data.country.name
         localStorage.setItem('userId', userId)
@@ -193,7 +193,7 @@ formSignIn.addEventListener('submit', async (e) => {
             password: password
         })
 
-        const userId = response.data.user.id
+        const userId = response.data.userId
         const userName = response.data.user.name
         const countryName = response.data.country.name
         localStorage.setItem('userId', userId)
@@ -226,7 +226,6 @@ formSignIn.addEventListener('submit', async (e) => {
 const topHeadlines = async () => {
     try {
         const userId = localStorage.getItem('userId')
-        
         const response = await axios.get(`${backEnd}/news/headlines`, {
             headers: {
                 authorization: userId
@@ -293,7 +292,6 @@ const showHeadlines = (response) => {
         })
         headlineComponent.appendChild(headlineSave)
     }
-    console.log(headlines)
 }
 
 
@@ -305,7 +303,6 @@ dashSearchButton.addEventListener('click', async (e) => {
         const response = await axios.post(`${backEnd}/news`, {
             search: dashSearchBar.value
         })
-        console.log(response)
         showSearchResults(response)
     } catch (error) {
         alert('Search failed')
@@ -366,7 +363,6 @@ const showSearchResults = (response) => {
         })
         searchComponent.appendChild(searchSave)
     }
-    console.log(searches)
 }
 
 
@@ -434,14 +430,12 @@ const showBookmarks = async (response) => {
                     url: bookmarks[i].url,
                     image: bookmarks[i].image
                 })
-                console.log('delete', response)
             } catch (error) {
                 alert('Delete button failed')
             }
         })
         bookmarkComponent.appendChild(bookmarkDelete)
     }
-    console.log(bookmarks)
 }
 
 
