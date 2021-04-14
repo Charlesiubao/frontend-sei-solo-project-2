@@ -358,7 +358,7 @@ const showSearchResults = (response) => {
                 })
                 console.log('save', response)
             } catch (error) {
-                alert('Save button failed')
+                //alert('Save button failed')
             }
         })
         searchComponent.appendChild(searchSave)
