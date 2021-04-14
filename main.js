@@ -1,7 +1,9 @@
 console.log('Reporting from main.js')
 
+// URL Variables
 const backEnd = 'http://localhost:3001'
 const nullImage = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+
 
 // DOM Selectors
 const navTagline = document.querySelector('#nav-tagline')
@@ -40,9 +42,12 @@ const dashBookmarksArea = document.getElementById('area-bookmarks')
 const testButton = document.getElementById('test-headlines')
 const testBookmarks = document.getElementById('test-bookmarks')
 
+
+// Global Arrays for News Articles
 let headlines = []
 let searches = []
 let bookmarks = []
+
 
 // Reusable Functions
 const navLoggedIn = () => {
@@ -104,7 +109,6 @@ const makeInvisible = (area) => {
     }
 }
 
-
 const addActive = (subNav) => {
     if ( subNav.classList.contains('active') !== true ) {
         subNav.classList.add('active')
@@ -129,7 +133,8 @@ const removeActiveNav = (nav) => {
     }
 }
 
-// Sign-up, Sign-in Form Functions
+
+// New User Sign Up
 formSignUp.addEventListener('submit', async (e) => {
     e.preventDefault()
 
@@ -156,27 +161,17 @@ formSignUp.addEventListener('submit', async (e) => {
             showDashUserName(userName)
             showDashCountry(countryName)
             addActiveNav(navDashboard)
+
             clearDOM(dashHeadlinesArea)
             clearDOM(dashSearchArea)
             clearDOM(dashBookmarksArea)
-            /* removeHidden(dashHeadlinesArea)
-            addActive(navHeadlines)
-            addHidden(dashSearchArea)
-            removeActive(navSearch)
-            addHidden(dashBookmarksArea)
-            removeActive(navBookmarks)
-            makeInvisible(dashSearchForm)
-            topHeadlines() */
 
             addHidden(dashHeadlinesArea)
             removeActive(navHeadlines)
-
             removeHidden(dashSearchArea)
             addActive(navSearch)
-
             addHidden(dashBookmarksArea)
             removeActive(navBookmarks)
-
             makeVisible(dashSearchForm)
             
     } catch (error) {
@@ -184,6 +179,8 @@ formSignUp.addEventListener('submit', async (e) => {
     }
 })
 
+
+// Existing User Sign in
 formSignIn.addEventListener('submit', async (e) => {
     e.preventDefault()
 
@@ -206,42 +203,44 @@ formSignIn.addEventListener('submit', async (e) => {
             showDashUserName(userName)
             showDashCountry(countryName)
             addActiveNav(navDashboard)
+
             clearDOM(dashHeadlinesArea)
             clearDOM(dashSearchArea)
             clearDOM(dashBookmarksArea)
 
-            /* removeHidden(dashHeadlinesArea)
-            addActive(navHeadlines)
-            addHidden(dashSearchArea)
-            removeActive(navSearch)
-            addHidden(dashBookmarksArea)
-            removeActive(navBookmarks)
-            makeInvisible(dashSearchForm)
-            topHeadlines() */
-
             addHidden(dashHeadlinesArea)
             removeActive(navHeadlines)
-
             removeHidden(dashSearchArea)
             addActive(navSearch)
-
             addHidden(dashBookmarksArea)
             removeActive(navBookmarks)
-
             makeVisible(dashSearchForm)
-
-            
-        
-            
+ 
     } catch (error) {
         alert('Login failed')
     }
 })
 
 
-// Top Headlines
+// Main Function for Top Headlines
+const topHeadlines = async () => {
+    try {
+        const userId = localStorage.getItem('userId')
+        
+        const response = await axios.get(`${backEnd}/news/headlines`, {
+            headers: {
+                authorization: userId
+            }
+        })
+        showHeadlines(response)
+        
+    } catch (error) {
+        alert('Getting top headlines failed')
+    }
+}
 
 
+// Generate Top Headlines News Articles (or Components)
 const showHeadlines = (response) => {
     clearDOM(dashHeadlinesArea)
     headlines = response.data.articles
@@ -276,7 +275,6 @@ const showHeadlines = (response) => {
         let headlineSave = document.createElement('div')
         headlineSave.classList.add('article-bookmark')
         headlineSave.innerText = 'Bookmark'
-        
         headlineSave.addEventListener('click', async () => {
             const userId = localStorage.getItem('userId')
             try {
@@ -287,38 +285,19 @@ const showHeadlines = (response) => {
                     title: headlines[i].title,
                     url: headlines[i].url,
                     image: headlines[i].urlToImage
-                })
-                
+                }) 
                 console.log('save', response)
             } catch (error) {
                 alert('Save button failed')
             }
-            
         })
         headlineComponent.appendChild(headlineSave)
     }
     console.log(headlines)
-
-}
-
-const topHeadlines = async () => {
-    try {
-        const userId = localStorage.getItem('userId')
-        
-        const response = await axios.get(`${backEnd}/news/headlines`, {
-            headers: {
-                authorization: userId
-            }
-        })
-        showHeadlines(response)
-        
-    } catch (error) {
-        alert('Getting top headlines failed')
-    }
 }
 
 
-// News Search
+// Main Function for Searched News
 dashSearchButton.addEventListener('click', async (e) => {
     e.preventDefault()
     
@@ -333,6 +312,8 @@ dashSearchButton.addEventListener('click', async (e) => {
     }
 })
 
+
+// Generate Searched News Articles (or Components)
 const showSearchResults = (response) => {
     clearDOM(dashSearchArea)
     searches = response.data.articles
@@ -367,7 +348,6 @@ const showSearchResults = (response) => {
         let searchSave = document.createElement('div')
         searchSave.classList.add('article-bookmark')
         searchSave.innerText = 'Bookmark'
-        
         searchSave.addEventListener('click', async () => {
             const userId = localStorage.getItem('userId')
             try {
@@ -389,7 +369,26 @@ const showSearchResults = (response) => {
     console.log(searches)
 }
 
-// Bookmarks
+
+// Main Function for My Bookmarks
+const myBookmarks = async () => {
+    try {
+        const userId = localStorage.getItem('userId')
+        
+        const response = await axios.get(`${backEnd}/users/bookmarks`, {
+            headers: {
+                authorization: userId
+            }
+        })
+        showBookmarks(response)
+
+    } catch (error) {
+        alert('Getting my bookmarks failed')
+    }
+}
+
+
+// Generate Bookmarked News Articles (or Components)
 const showBookmarks = async (response) => {
     clearDOM(dashBookmarksArea)
     bookmarks = response.data.response
@@ -424,7 +423,6 @@ const showBookmarks = async (response) => {
         let bookmarkDelete = document.createElement('div')
         bookmarkDelete.classList.add('article-bookmark')
         bookmarkDelete.innerText = 'Remove'
-        
         bookmarkDelete.addEventListener('click', async () => {
             const userId = localStorage.getItem('userId')
             try {
@@ -446,24 +444,56 @@ const showBookmarks = async (response) => {
     console.log(bookmarks)
 }
 
-const myBookmarks = async () => {
+
+// Website On Load Function
+const pageOnLoad = async () => {
     try {
         const userId = localStorage.getItem('userId')
-        
-        const response = await axios.get(`${backEnd}/users/bookmarks`, {
-            headers: {
-                authorization: userId
-            }
-        })
-        showBookmarks(response)
 
+        if (userId) {
+            const response = await axios.get(`${backEnd}/users`, {
+                headers: {
+                    authorization: userId
+                }
+            })
+            const userName = response.data.user.name
+            const countryName = response.data.country.name
+                navLoggedIn()
+                dashSearchBar.value =''
+                showSection('.dashboard')
+                showDashUserName(userName)
+                showDashCountry(countryName)
+                addActiveNav(navDashboard)
+
+                clearDOM(dashHeadlinesArea)
+                clearDOM(dashSearchArea)
+                clearDOM(dashBookmarksArea)
+
+                addHidden(dashHeadlinesArea)
+                removeActive(navHeadlines)
+                removeHidden(dashSearchArea)
+                addActive(navSearch)
+                addHidden(dashBookmarksArea)
+                removeActive(navBookmarks)
+
+                makeVisible(dashSearchForm)
+
+        } else {
+            navLoggedOut()
+            showSection('.welcome')
+            addActiveNav(navWelcome)
+        }
     } catch (error) {
-        alert('Getting my bookmarks failed')
+        alert('Page load failed')
     }
 }
 
 
-// Nav-link Functions
+// Event Listener for On Load
+document.addEventListener('DOMContentLoaded', pageOnLoad())
+
+
+// Nav-link Event Listeners
 navTagline.addEventListener('click', () => {
     showSection('.about')
     addActiveNav(navAbout)
@@ -515,26 +545,17 @@ navDashboard.addEventListener('click', () => {
     removeActiveNav(navAbout)
     makeInvisible(dashSearchForm)
     showSection('.dashboard')
+
     clearDOM(dashHeadlinesArea)
     clearDOM(dashSearchArea)
     clearDOM(dashBookmarksArea)
-    /* removeHidden(dashHeadlinesArea)
-    addActive(navHeadlines)
-    addHidden(dashSearchArea)
-    removeActive(navSearch)
-    addHidden(dashBookmarksArea)
-    removeActive(navBookmarks)
-    topHeadlines() */
     
     addHidden(dashHeadlinesArea)
     removeActive(navHeadlines)
-
     removeHidden(dashSearchArea)
     addActive(navSearch)
-
     addHidden(dashBookmarksArea)
     removeActive(navBookmarks)
-
     makeVisible(dashSearchForm)    
 })
 
@@ -559,15 +580,12 @@ navHeadlines.addEventListener('click', () => {
     
     removeHidden(dashHeadlinesArea)
     addActive(navHeadlines)
-
     addHidden(dashSearchArea)
     removeActive(navSearch)
-
     addHidden(dashBookmarksArea)
     removeActive(navBookmarks)
 
     makeInvisible(dashSearchForm)
-
     topHeadlines()
 })
 
@@ -579,16 +597,12 @@ navSearch.addEventListener('click', () => {
 
     addHidden(dashHeadlinesArea)
     removeActive(navHeadlines)
-
     removeHidden(dashSearchArea)
     addActive(navSearch)
-
     addHidden(dashBookmarksArea)
     removeActive(navBookmarks)
 
     makeVisible(dashSearchForm)
-    
-    navBookmarks.classList.remove('active')
 })
 
 navBookmarks.addEventListener('click', () => {
@@ -598,77 +612,11 @@ navBookmarks.addEventListener('click', () => {
 
     addHidden(dashHeadlinesArea)
     removeActive(navHeadlines)
-
     addHidden(dashSearchArea)
     removeActive(navSearch)
-
     removeHidden(dashBookmarksArea)
     addActive(navBookmarks)
 
     makeInvisible(dashSearchForm)
-
     myBookmarks()
 })
-
-
-
-
-// On load
-const pageOnLoad = async () => {
-    try {
-        const userId = localStorage.getItem('userId')
-
-        if (userId) {
-            const response = await axios.get(`${backEnd}/users`, {
-                headers: {
-                    authorization: userId
-                }
-            })
-            const userName = response.data.user.name
-            const countryName = response.data.country.name
-                navLoggedIn()
-                dashSearchBar.value =''
-                showSection('.dashboard')
-                showDashUserName(userName)
-                showDashCountry(countryName)
-                addActiveNav(navDashboard)
-                clearDOM(dashHeadlinesArea)
-                clearDOM(dashSearchArea)
-                clearDOM(dashBookmarksArea)
-                /* removeHidden(dashHeadlinesArea)
-                addActive(navHeadlines)
-                addHidden(dashSearchArea)
-                removeActive(navSearch)
-                addHidden(dashBookmarksArea)
-                removeActive(navBookmarks)
-                makeInvisible(dashSearchForm)
-                topHeadlines() */
-
-                addHidden(dashHeadlinesArea)
-                removeActive(navHeadlines)
-
-                removeHidden(dashSearchArea)
-                addActive(navSearch)
-
-                addHidden(dashBookmarksArea)
-                removeActive(navBookmarks)
-
-                makeVisible(dashSearchForm)
-
-        } else {
-            navLoggedOut()
-            showSection('.welcome')
-            addActiveNav(navWelcome)
-        }
-
-
-    } catch (error) {
-        alert('Page load failed')
-    }
-}
-
-
-
-
-document.addEventListener('DOMContentLoaded', pageOnLoad())
-
