@@ -14,24 +14,45 @@
         </div>
         <div id="header-links">
             <div class="nav-link" id="nav-about">About</div>
-            <div class="nav-link" id="nav-signin">Sign in</div>
             <div class="nav-link" id="nav-signup">Get Started</div>
+            <div class="nav-link" id="nav-signin">Sign In</div>
             <div class="nav-link hidden" id="nav-dashboard">Dashboard</div>
-            <div class="nav-link hidden" id="nav-settings">Settings</div>
             <div class="nav-link hidden" id="nav-logout">Logout</div>
         </div>
     </nav>
     <main>
         <section class="welcome hidden">
-            <h2>welcome</h2>
+            <div class="welcome-area">
+                <div class="welcome-container">
+                    <img src="https://images.unsplash.com/photo-1546422904-90eab23c3d7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1352&q=80" id="welcome-image">
+                    <div id="welcome-overlay"></div>
+                    <div id="welcome-description">Ready to redefine your news experience? <span id="nav-tagline">Zeitgest is here for you.</span></div>
+                </div>    
+            </div>
         </section>
         <section class="about hidden">
-            <h2>about</h2>
+            <div class="about-area">
+                <div class="about-container">
+                    <div class="about-profile">
+                        <h2>Thanks for visiting Zeitgeist!</h2>
+                        <p>Hello! My name is Tim Mok, and I created this full stack web application in 5 days as a midterm solo project for <a href="https://generalassemb.ly/education/software-engineering-immersive/new-york-city" target="_blank">General Assembly's Software Engineering Immersive</a>.</p>
+                        <p>Project achievements include front-end development, back-end development, user authentication, database management, associations, CRUD routes, RESTful API integration, and web deployment.</p>
+                        <p>To build Zeitgeist, I used JavaScript, HTML, CSS, Express, Node.js, PostgreSQL, GitHub, Heroku, VSCode, Postman, and <a href="https://newsapi.org/" target="_blank">News API</a>.</p>
+                        <p>Images sourced from <a href="https://unsplash.com/" target="_blank">Unsplash</a>. Credits to <a href="https://unsplash.com/photos/c5QdMcuFlgY" target="_blank">Filip Mishevski</a> and <a href="https://unsplash.com/photos/WYd_PkCa1BY" target="_blank">AbsolutVision</a>.</p>
+                        
+                    </div>
+                    <div class="about-picture">
+                        <a href="https://www.linkedin.com/in/tim-mok/" target="_blank"><img src="https://media-exp1.licdn.com/dms/image/C4D03AQFKLXoMQb4RMg/profile-displayphoto-shrink_800_800/0/1615204919800?e=1623888000&v=beta&t=ChVvXo9geEIVC_6sfN3HnD2O8nJu5KNS1SyTG6AZNuU" alt="creator-image" id="about-img"></a>
+                        <a href="https://www.linkedin.com/in/tim-mok/" target="_blank">LinkedIn</a><a href="https://github.com/graymok" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="signin hidden">
             <form id="signin-form">
                 <div class="description-box">
                     <h2>Welcome back!</h2>
+                    <p>If you'd like to see a demo of the features, sign in with <span class="guest">guest@zeitgeist.com</span> and <span class="guest">password</span></p>
                 </div>
                 <div class="signin-box">
                     <label for="signin-email">Email:</label>
@@ -165,20 +186,7 @@
                 </div>
             </div>
         </section>
-        <section class="settings hidden">
-            
-        </section>
-        <section class="logout hidden">
-            <div class="description-box">
-                <h2>You have been logged out.</h2>
-            </div>
-        </section>
     </main>
-    <nav id="nav-footer">
-        
-    </nav>
-
-
     <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script async defer src="./main.js"></script>
 </body>

@@ -4,25 +4,17 @@ const backEnd = 'http://localhost:3001'
 const nullImage = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
 
 // DOM Selectors
+const navTagline = document.querySelector('#nav-tagline')
 const navWelcome = document.querySelector('#nav-welcome')
 const navAbout = document.querySelector('#nav-about')
 const navSignIn = document.querySelector('#nav-signin')
 const navSignUp = document.querySelector('#nav-signup')
 const navDashboard = document.querySelector('#nav-dashboard')
-const navSettings = document.querySelector('#nav-settings')
 const navLogout = document.querySelector('#nav-logout')
 
 const navHeadlines = document.querySelector('#nav-headlines')
 const navSearch = document.querySelector('#nav-search')
 const navBookmarks = document.querySelector('#nav-bookmarks')
-
-const sectionAbout = document.querySelector('.about')
-const sectionStart = document.querySelector('.start')
-const sectionSignIn = document.querySelector('.signin')
-const sectionSignUp = document.querySelector('.signup')
-const sectionDashboard = document.querySelector('.dashboard')
-const sectionSettings = document.querySelector('.settings')
-const sectionLogout = document.querySelector('.logout')
 
 const formSignIn = document.querySelector('#signin-form')
 const emailSignIn = document.querySelector('#signin-email')
@@ -54,20 +46,16 @@ let bookmarks = []
 
 // Reusable Functions
 const navLoggedIn = () => {
-    navAbout.classList.add('hidden')
     navSignIn.classList.add('hidden')
     navSignUp.classList.add('hidden')
     navDashboard.classList.remove('hidden')
-    navSettings.classList.remove('hidden')
     navLogout.classList.remove('hidden')
 }
 
 const navLoggedOut = () => {
-    navAbout.classList.remove('hidden')
     navSignIn.classList.remove('hidden')
     navSignUp.classList.remove('hidden')
     navDashboard.classList.add('hidden')
-    navSettings.classList.add('hidden')
     navLogout.classList.add('hidden')
 }
 
@@ -251,8 +239,6 @@ formSignIn.addEventListener('submit', async (e) => {
 })
 
 
-
-
 // Top Headlines
 
 
@@ -331,22 +317,6 @@ const topHeadlines = async () => {
     }
 }
 
-/* testButton.addEventListener('click', async () => {
-    try {
-        const userId = localStorage.getItem('userId')
-        
-        const response = await axios.get(`${backEnd}/news/headlines`, {
-            headers: {
-                authorization: userId
-            }
-        })
-        console.log(response)
-        showHeadlines(response)
-
-    } catch (error) {
-        alert('Getting top headlines failed')
-    }
-}) */
 
 // News Search
 dashSearchButton.addEventListener('click', async (e) => {
@@ -494,10 +464,19 @@ const myBookmarks = async () => {
 
 
 // Nav-link Functions
+navTagline.addEventListener('click', () => {
+    showSection('.about')
+    addActiveNav(navAbout)
+    removeActiveNav(navWelcome)
+    removeActiveNav(navDashboard)
+    removeActiveNav(navSignUp)
+    removeActiveNav(navSignIn)
+})
+
 navWelcome.addEventListener('click', () => {
     showSection('.welcome')
+    addActiveNav(navWelcome)
     removeActiveNav(navDashboard)
-    removeActiveNav(navSettings)
     removeActiveNav(navAbout)
     removeActiveNav(navSignIn)
     removeActiveNav(navSignUp)
@@ -506,14 +485,17 @@ navWelcome.addEventListener('click', () => {
 navAbout.addEventListener('click', () => {
     showSection('.about')
     addActiveNav(navAbout)
+    removeActiveNav(navWelcome)
     removeActiveNav(navSignIn)
     removeActiveNav(navSignUp)
+    removeActiveNav(navDashboard)
 })
 
 navSignIn.addEventListener('click', () => {
     formSignIn.reset()
     showSection('.signin')
     addActiveNav(navSignIn)
+    removeActiveNav(navWelcome)
     removeActiveNav(navAbout)
     removeActiveNav(navSignUp)
 })
@@ -522,15 +504,15 @@ navSignUp.addEventListener('click', () => {
     formSignUp.reset()
     showSection('.signup')
     addActiveNav(navSignUp)
+    removeActiveNav(navWelcome)
     removeActiveNav(navAbout)
     removeActiveNav(navSignIn)
 })
 
 navDashboard.addEventListener('click', () => {
-    dashSearchBar.value =''
     addActiveNav(navDashboard)
-    removeActiveNav(navSettings)
-
+    removeActiveNav(navWelcome)
+    removeActiveNav(navAbout)
     makeInvisible(dashSearchForm)
     showSection('.dashboard')
     clearDOM(dashHeadlinesArea)
@@ -556,23 +538,17 @@ navDashboard.addEventListener('click', () => {
     makeVisible(dashSearchForm)    
 })
 
-navSettings.addEventListener('click', () => {
-    removeActiveNav(navDashboard)
-    addActiveNav(navSettings)
-    showSection('.settings')
-})
-
 navLogout.addEventListener('click', () => {
     navLoggedOut()
-    showSection('.logout')
+    showSection('.welcome')
     clearDOM(dashHeadlinesArea)
     clearDOM(dashSearchArea)
     clearDOM(dashBookmarksArea)
+    addActiveNav(navWelcome)
     removeActiveNav(navAbout)
     removeActiveNav(navSignIn)
     removeActiveNav(navSignUp)
     removeActiveNav(navDashboard)
-    removeActiveNav(navSettings)
     localStorage.clear()
 })
 
@@ -596,6 +572,7 @@ navHeadlines.addEventListener('click', () => {
 })
 
 navSearch.addEventListener('click', () => {
+    dashSearchBar.value =''
     clearDOM(dashHeadlinesArea)
     clearDOM(dashSearchArea)
     clearDOM(dashBookmarksArea)
@@ -681,6 +658,7 @@ const pageOnLoad = async () => {
         } else {
             navLoggedOut()
             showSection('.welcome')
+            addActiveNav(navWelcome)
         }
 
 

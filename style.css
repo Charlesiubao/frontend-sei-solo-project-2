@@ -14,6 +14,10 @@ option, input, label, button {
     font-family: 'PT Sans';
 }
 
+li {
+    margin: 5px 0px;
+}
+
 input, label, select {
     margin: 0px 10px;
 }
@@ -23,7 +27,7 @@ select {
 }
 
 #nav-header {
-    background-color: rgb(33, 30, 84);
+    background-color: black;
     height: 80px;
     font-family: 'Montserrat';
     color: white;
@@ -55,7 +59,7 @@ select {
 }
 
 .nav-logo:hover {
-    color: rgb(74, 173, 227);
+    color: rgb(93, 207, 242);
 }
 
 .nav-link {
@@ -64,7 +68,7 @@ select {
 
 .nav-link:hover {
     cursor: pointer;
-    color: rgb(74, 173, 227);
+    color: rgb(93, 207, 242);
 }
 
 main {
@@ -72,16 +76,18 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-/*     border: 1px solid black; */
 }
 
 section {
-/*     border: 1px solid blue; */
     width: 90%;
     height: 900px;
 }
 
-#signup-form, #signin-form, #settings-form {
+.guest {
+    color:rgb(93, 207, 242);
+}
+
+#signup-form, #signin-form, .about-area, .welcome-area {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,13 +95,95 @@ section {
 
 }
 
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 600px;
+    width: 1000px;
+    padding: 20px 20px;
+    position: relative;
+}
+
+#welcome-image {
+    width: 900px;
+    height: 540px;
+    object-fit: cover;
+    position: block;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+#welcome-overlay {
+    width: 900px;
+    height: 540px;
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(240, 240, 240, 0.3);
+    border-radius: 20px;
+}
+
+#welcome-description {
+    padding: 10px 10px;
+    position: absolute;
+    z-index: 3;
+    font-family: 'Montserrat';
+    font-size: 1.8em;
+    bottom: 7%;
+    left: 35%;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(15, 15, 15);
+}
+
+#nav-tagline:hover {
+    color:rgb(93, 207, 242);
+    cursor: pointer;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 600px;
+    width: 800px;
+}
+
+.about-profile {
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.about-picture {
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#about-img {
+    border-radius: 50%;
+    border: 3px solid black;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
 .description-box {
     width: 28%;
     text-align: center;
 }
 
-.signup-box, .signin-box, .settings-box {
-/*     border: 1px solid green; */
+.signup-box, .signin-box {
     padding: 5px 5px;
     display: flex;
     flex-direction: row;
@@ -105,9 +193,8 @@ section {
     font-size: .9em;
 }
 
-
 #dash-username, #dash-country {
-    color: rgb(74, 173, 227);
+    color: rgb(93, 207, 242);
     text-transform: uppercase;
 }
 
@@ -170,7 +257,6 @@ section {
     align-items: flex-start;
     flex-wrap: wrap;
     width: 1150px;
-/*     padding: 50px 50px; */
 }
 
 #dash-search {
@@ -190,8 +276,6 @@ section {
 #search-bar {
     width: 200px;
 }
-
-
 
 .article-component {
     width: 450px;
@@ -218,8 +302,6 @@ section {
     margin: 10px 10px;
 }
 
-
-
 .article-title {
     position: absolute;
     color: white;
@@ -231,7 +313,7 @@ section {
 }
 
 .article-title:hover {
-    color:rgb(74, 173, 227);
+    color:rgb(93, 207, 242);
 }
 
 .article-image {
@@ -268,15 +350,9 @@ section {
 }
 
 .article-bookmark:hover {
-    color:rgb(74, 173, 227);
-    border: 1px solid rgb(74, 173, 227);
+    color:rgb(93, 207, 242);
+    border: 1px solid rgb(93, 207, 242);
 }
-
-
-
-
-
-
 
 .active {
     background-color:rgb(242, 242, 242);
@@ -285,16 +361,16 @@ section {
 }
 
 .active-nav {
-    color: rgb(74, 173, 227);
+    color: rgb(93, 207, 242);
 }
 
 .active-link {
-    color:rgb(74, 173, 227);
+    color:rgb(93, 207, 242);
 }
 
 .active-bookmark {
-    color:rgb(74, 173, 227);
-    border: 1px solid rgb(74, 173, 227);
+    color:rgb(93, 207, 242);
+    border: 1px solid rgb(93, 207, 242);
 }
 
 .hidden {
